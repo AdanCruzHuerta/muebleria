@@ -8,9 +8,9 @@ class AdminController extends \BaseController {
 			Aplicando DRY llamanos al metodo "getAdmin" que obtiene los datos de 
 			administrador y los aplica a los metodos mencionados "only"	
 		 */
-		$this->beforeFilter('@getAdmin', ['only' => ['index'] ]);
+		$this->beforeFilter('@getAdmin', ['only' => ['index','edit'] ]);
 
-		$this->beforeFilter('@getMessages', ['only' => ['index'] ]);
+		$this->beforeFilter('@getMessages', ['only' => ['index','edit'] ]);
 	}
 
 	public function getAdmin()
@@ -80,9 +80,11 @@ class AdminController extends \BaseController {
 	public function edit()
 	{
 
-		$administrador = Config::get('constants.DATA_ADMIN');
+		$administrador = $this->administrador;
 
-		return View::make('administrador.perfilAdmin')->with('administrador',$administrador);
+		$mensajes = $this->messages;
+
+		return View::make('administrador.perfilAdmin', compact('administrador','mensajes'));
 
 	}
 

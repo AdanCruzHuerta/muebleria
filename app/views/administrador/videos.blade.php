@@ -21,49 +21,28 @@
 
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4>Video 1 </h4>
-					</div>
-					<div class="panel-body">
-						contenido
-					</div>
-				</div>
-			</div>
 
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4>Video 2 </h4>
-					</div>
-					<div class="panel-body">
-						contenido
-					</div>
-				</div>
-			</div>
+			@foreach($videos as $video)
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4> {{$video->nombre}} </h4>
+						</div>
+						<div class="panel-body">
+							<?php 
 
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4>Video 3 </h4>
-					</div>
-					<div class="panel-body">
-						contenido
-					</div>
-				</div>
-			</div>
+								$url = explode('?', $video->frame);
 
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4>Video 4 </h4>
-					</div>
-					<div class="panel-body">
-						contenido
+								$left_url = $url[0];
+
+								$id = explode('embed/', $left_url);
+
+							 ?>
+							<img src="http://img.youtube.com/vi/{{$id[1]}}/0.jpg" alt="Video de Mueblería Ureña" class="img-thumbnail">
+						</div>
 					</div>
 				</div>
-			</div>	
+			@endforeach	
 		</div>
 
 		<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">

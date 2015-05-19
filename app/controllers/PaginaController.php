@@ -4,13 +4,9 @@ class PaginaController extends \BaseController {
 
 	public function __construct()
 	{	
-		/*
-			Aplicando DRY llamanos al metodo "getAdmin" que obtiene los datos de 
-			administrador y los aplica a los metodos mencionados "only"	
-		 */
-		$this->beforeFilter('@getAdmin', ['only' => ['slider','getSlider','ventas','video']]);
+		$this->beforeFilter('@getAdmin', ['only' => ['slider','getSlider','ventas','videos']]);
 
-		$this->beforeFilter('@getMessages', ['only' => ['slider','video']]);
+		$this->beforeFilter('@getMessages', ['only' => ['slider','ventas','videos']]);
 	}
 
 	public function getAdmin()
@@ -208,7 +204,7 @@ class PaginaController extends \BaseController {
 	/*
 	 *	Funcion que muestra los videos actuales del sistema
 	 */
-	public function video()
+	public function videos()
 	{
 		$videos = Video::all();
 
@@ -219,6 +215,26 @@ class PaginaController extends \BaseController {
 		return View::make('administrador.videos', compact('videos','administrador','mensajes'));
 	}
 
+	public function videoStore()
+	{
+		if (Request::ajax())
+		{
+			$video = new Video;
+
+			$video->nombre = Input::get('nombre');
+
+			$video->frame = Input::get('frame');
+
+			if($video->save())
+			{
+				return Response::json(true);
+			}
+
+			return Response::json(false);
+
+		}
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| 		Módulo Ventas
@@ -227,6 +243,10 @@ class PaginaController extends \BaseController {
 
 	public function ventas()
 	{
-		return View::make('administrador.ventas')->with('administrador', $this->administrador);
+		$administrador = $this->administrador;
+
+		$mensajes = $this->messages;
+
+		return View::make('administrador.ventas', compact('administrador','mensajes'));
 	}
 }

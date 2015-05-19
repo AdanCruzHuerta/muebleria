@@ -2,6 +2,23 @@
 
 class EmpleadosController extends \BaseController {
 
+	public function __construct()
+	{
+		$this->beforeFilter('@getAdmin', ['only' => ['index']]);
+
+        $this->beforeFilter('@getMessages', ['only' => ['index']]);
+	}
+
+	public function getAdmin()
+	{
+		$this->administrador = Config::get('constants.DATA_ADMIN');
+	}
+
+    public function getMessages()
+    {
+        $this->messages = Config::get('constants.DATA_MESSAGES');
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,7 +26,11 @@ class EmpleadosController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$administrador = $this->administrador;
+
+		$mensajes = $this->messages;
+
+		return View::make('administrador.empleados', compact('administrador','mensajes'));
 	}
 
 

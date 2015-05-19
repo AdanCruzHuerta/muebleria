@@ -139,7 +139,7 @@
 		                                <a href="/" target="_blank">Ver tienda</a>
 		                            </li>
 		                            <li>
-		                                <a href="/administrador/pagina/video">Video</a> 
+		                                <a href="/administrador/pagina/videos">Video</a> 
 		                            </li>
 	                            </ul>
 	                        </li>

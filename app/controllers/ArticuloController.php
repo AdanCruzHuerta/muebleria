@@ -5,11 +5,18 @@ class ArticuloController extends \BaseController {
 	public function __construct()
 	{
 		$this->beforeFilter('@getAdmin', ['only' => ['index']]);
+
+		$this->beforeFilter('@getMessages', ['only' => ['index']]);
 	}
 
 	public function getAdmin()
 	{
 		$this->administrador = Config::get('constants.DATA_ADMIN');
+	}
+
+	public function getMessages()
+	{
+		$this->messages = COnfig::get('constants.DATA_MESSAGES');
 	}
 
 	/**
@@ -21,9 +28,11 @@ class ArticuloController extends \BaseController {
 	{
 		$administrador = $this->administrador;
 
+		$mensajes = $this->messages;
+
 		$articulos = DB::table('articulos')->paginate(9);
 
-		return View::make('administrador.productosArticulos', compact('administrador','articulos'));
+		return View::make('administrador.productosArticulos', compact('administrador','articulos','mensajes'));
 	}
 
 	/**

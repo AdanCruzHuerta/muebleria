@@ -71,8 +71,8 @@
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<div align="center" class="embed-responsive embed-responsive-16by9">				
-									<iframe class="embed-responsive-item" width="550" height="360" src="https://www.youtube.com/embed/Hih8vUVwO1Y?feature=player_detailpage&autoplay=0&autohide=1" frameborder="0"></iframe>
+								<div align="center" class="embed-responsive embed-responsive-16by9">
+									{{ $video->frame }}
 								</div>
 							</div>
 						</div>

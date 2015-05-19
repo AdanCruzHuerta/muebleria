@@ -1,5 +1,5 @@
 <?php
 
 class Video extends \Eloquent {
-	protected $fillable = ['nombre','frame','status'];
+	protected $fillable = ['nombre','frame'];
 }

@@ -14,7 +14,9 @@ Route::get('/', function(){
 
     $articulos = Helper::ArticulosInicio();
 
-	return View::make('tienda.inicio', compact('sliders','articulos'));
+    $video = Video::where('status','=',1)->first();
+
+	return View::make('tienda.inicio', compact('sliders','articulos','video'));
 });
 
 Route::get('/productos', function(){
@@ -119,7 +121,9 @@ Route::group(['before'=>'auth'], function(){
 
 	Route::post('/administrador/pagina/municipios', 'PaginaController@municipios');
 
-	Route::get('/administrador/pagina/video', 'PaginaController@video');
+	Route::get('/administrador/pagina/videos', 'PaginaController@videos');
+
+	Route::post('/administrador/pagina/videos/add', 'PaginaController@videoStore');
 
 	/*
 	 *	Rutas de módulo del "CLIENTES"

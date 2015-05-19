@@ -7,7 +7,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<h2><i class="fa fa-users"></i> Clientes</h2>
 			<ol class="breadcrumb breadcrumb-arrow">
-				<li><a href="/admin">Home</a></li>
+				<li><a href="/administrador">Home</a></li>
 				<li  class="active"><span>Clientes</span></li>
 			</ol>
 		</div>
