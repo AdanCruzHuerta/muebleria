@@ -235,6 +235,38 @@ class PaginaController extends \BaseController {
 		}
 	}
 
+	public function changeVideo($id)
+	{
+		$videos = Video::all();
+		
+		foreach($videos as $v)
+		{
+			$v->status = 0;
+
+			$v->save();
+		}
+
+		$video = Video::find($id);
+
+		$video->status = 1;
+
+		$video->save();
+
+		return Redirect::to('/administrador/pagina/videos');
+	}
+
+	public function deleteVideo()
+	{
+		$video = Video::find(Input::get('id'));
+
+		if($video->delete())
+		{
+			return Response::json(true);
+		}
+
+		return Response::json(false);
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| 		Módulo Ventas

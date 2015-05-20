@@ -60,12 +60,12 @@
 							<br>
 							<div class="row">
 								<div class="opcion-item-slider col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-					 					<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-danger btn-accion delete-slider" data-id="{{ $video->id }}" title="Borrar"><i class="fa fa-trash-o"></i></button>
-					 				</div>
 									@if($video->status == 0)
+						 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						 					<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-danger btn-accion delete-video" data-id="{{ $video->id }}" data-name="{{$video->nombre}}" title="Borrar"><i class="fa fa-trash-o"></i></button>
+						 				</div>
 					 					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-					 						<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-warning btn-accion visibleSlider" data-id="{{$video->id}}" title="@if($video->status == 1) {{ 'Deshabilitar' }} @else {{ 'Habilitar' }} @endif"><i class="fa @if($video->status == 1) {{ 'fa-eye' }} @else {{ 'fa-eye-slash' }} @endif"></i></button>
+					 						<a href="/administrador/pagina/videos/change/{{$video->id}}" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-warning btn-accion" title="Habilitar video"><i class="fa fa-eye"></i></a>
 					 					</div>
 					 				@endif
 					 			</div>
@@ -79,7 +79,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<a id="add-video" class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#modal-video"><i class="fa fa-film"></i> Agregar Video</a>
+					<a id="add-video" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-video"><i class="fa fa-film"></i> Agregar Video</a>
 				</div>
 			</div>	
 			<p class="info_seccion">
@@ -89,7 +89,30 @@
 
 	</div>
 
-	<!-- Modal Agregar Video-->
+	<!-- Modal Agregar Video -->
 	@include('administrador.Modales.crearVideo')
+
+	<!-- Modal borrar video -->
+	@include('administrador.Modales.borrarVideo')
+
+<script type="text/javascript">
+
+$(function(){
+	
+	$('.delete-video').click(function(){
+		var id = $(this).attr('data-id');
+		
+		var name = $(this).attr('data-name');
+
+		$('#nombre_video').text(name);
+
+		$('#id_video').val(id);
+		
+		$('#modal-borrar-video').modal('show');
+	});
+
+});
+
+</script>
 
 @stop

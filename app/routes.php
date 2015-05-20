@@ -125,6 +125,10 @@ Route::group(['before'=>'auth'], function(){
 
 	Route::post('/administrador/pagina/videos/add', 'PaginaController@videoStore');
 
+	Route::get('/administrador/pagina/videos/change/{id}', 'PaginaController@changeVideo');
+
+	Route::post('/administrador/pagina/videos/delete', 'PaginaController@deleteVideo');
+
 	/*
 	 *	Rutas de módulo del "CLIENTES"
 	 */ 
