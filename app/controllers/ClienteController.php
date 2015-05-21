@@ -44,7 +44,17 @@ class ClienteController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$cliente = Repositorioclientes::getCliente($id);
+
+		$persona = Persona::find($id);
+
+		if( $persona->status == 0 )
+		{
+			$cliente = Repositorioclientes::getClienteDefault($id);
+		}
+		else
+		{
+			$cliente = Repositorioclientes::getClienteComplete($id);
+		}
 
 		$administrador = $this->administrador;
 

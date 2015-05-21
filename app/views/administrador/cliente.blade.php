@@ -25,20 +25,87 @@
     				</center>
   				</div>
 			  	<div class="panel-body">
-			  		<table class="table table-bordered">
+			  		<table class="table table-bordered table-striped">
 						<tr>
-							<td> <center>{{ $cliente->nombre." ".$cliente->apellido_p." ".$cliente->apellido_m }}</center></td>
-							<td><center> {{ $cliente->email }} </center></td>
+							<td>
+								<center>
+									<label>Foto</label><br>
+									<img src="{{ $cliente->photo_user }}" class="img-thumbnail">
+								</center>
+							</td>
+							<td>
+								<center>
+									<label>Nombre</label><br>
+									{{ $cliente->nombre." ".$cliente->apellido_p." ".$cliente->apellido_m }}
+								</center>
+							</td>
+							<td>
+								<center>
+									<label>Estatus</label><br>
+									@if($cliente->status == 0){{ 'Sin completar' }} @else  {{ 'Completado' }}  @endif
+								</center>
+							</td>
 						</tr>
 						<tr>
-							<td><center>Sin estado</center></td>
-							<td><center>Sin municipio</center></td>
-							<td><center> @if( !$cliente->ciudad ) Sin ciudad @else {{ $cliente->ciudad }} @endif </center></td>
+							<td>
+								<center>
+									<label>Teléfono</label><br>
+									@if(!$cliente->telefono) {{ '-' }}@else{{ $cliente->telefono }} @endif
+								</center>
+							</td>
+							<td>
+								<center>
+									<label>Correo eléctronico</label><br>
+									{{ $cliente->email }}
+								</center>
+							</td>
+							<td>
+								<center>
+									<label>Estado</label><br>
+									{{{ $cliente->estado or '-' }}}
+								</center>
+							</td>
 						</tr>
 						<tr>
-							<td><center>@if( !$cliente->codigo_postal ) Sin código postal @else {{ $cliente->codigo_postal }} @endif</center></td>
-							<td><center>@if( !$cliente->calle ) Sin calle @else {{ $cliente->calle }} @endif</center></td>
-							<td><center></center></td>
+							<td>
+								<center>
+									<label>Municipio</label><br>
+									{{{ $cliente->estado or '-' }}}
+								</center>
+							</td>
+							<td>
+								<center>
+									<label>Ciudad</label><br>
+									@if(!$cliente->ciudad) {{ '-' }} @else {{ $cliente->ciudad }} @endif
+								</center>
+							</td>
+							<td>
+								<center>
+									<label>Código Postal</label><br>
+									@if(!$cliente->codigo_postal) {{ '-' }} @else {{ $cliente->codigo_postal }} @endif
+								</center>
+							</td>
+						</tr>
+						<tr>
+							
+							<td>
+								<center>
+									<label>Calle</label><br>
+									@if(!$cliente->calle) {{ '-' }} @else {{ $cliente->calle }} @endif
+								</center>
+							</td>
+							<td>
+								<center>
+									<label>Numero ext</label><br>
+									@if(!$cliente->numero_ext) {{ '-' }} @else {{ $cliente->numero_ext }} @endif
+								</center>
+							</td>
+							<td>
+								<center>
+									<label>Número int</label><br>
+									@if(!$cliente->numero_int) {{ '-' }} @else {{ $cliente->numero_int }} @endif
+								</center>
+							</td>
 						</tr>
 					</table>
 			  	</div>
