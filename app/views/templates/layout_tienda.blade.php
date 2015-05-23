@@ -54,9 +54,17 @@
 
 								@if(Auth::user()) 
 
-									<a href="/cuenta" id="opciones_tienda_2" type="button" class="btn btn-default btn-lg pull-right" title="Iniciar Sesión / Registrarse"><i class="fa fa-user"></i></a>
+									@if(Auth::user()->roles_id == 1)
+
+										<a href="/cuenta" id="opciones_tienda_2" type="button" class="btn btn-default btn-lg pull-right" title="Iniciar Sesión / Registrarse"><i class="fa fa-user"></i></a>
 								
-									<a href="/carrito" id="carrito_compra" type="button" class="btn btn-default btn-lg pull-right opciones_cliente" title="Ver carrito"><i class="fa fa-shopping-cart"></i></a>
+										<a href="/carrito" id="carrito_compra" type="button" class="btn btn-default btn-lg pull-right opciones_cliente" title="Ver carrito"><i class="fa fa-shopping-cart"></i></a>
+
+									@else
+
+										<a href="/cuenta" id="opciones_tienda_1" type="button" class="btn btn-default btn-lg pull-right opciones_cliente" title="Iniciar Sesión / Registrarse"><i class="fa fa-user"></i></a>
+
+									@endif
 
 								@else
 

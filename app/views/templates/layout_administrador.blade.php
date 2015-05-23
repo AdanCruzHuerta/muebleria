@@ -159,7 +159,7 @@
 		                                <a href="/administrador/productos/categorias">Categorias</a>
 		                            </li>
 		                            <li>
-		                                <a href="/administrador/productos/articulos">Articulos</a>
+		                                <a href="/administrador/productos/articulos">Artículos</a>
 		                            </li>
 	                            </ul>
 	                        </li>

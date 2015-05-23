@@ -8,10 +8,11 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<h2><i class="fa fa-book"></i> Productos</h2>
             <ol class="breadcrumb breadcrumb-arrow">
-                @if($categoriaActual->nivel_actual < 2)
+                @if($categoriaActual->id == 1)
     			
                 	<li><a href="/admininistrador">Home</a></li>
-    				<li class="active"><span>Categorías</span></li>
+    				<li class="active"><span>Productos</span></li>
+                    <li class="active"><span>Categorías</span></li>
                 
                 @else
                 
@@ -26,7 +27,7 @@
 
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
-                @if( $categoriaActual->nivel_actual < 2 )
+                @if( $categoriaActual->id == 1 )
 
                     @include('administrador.Recursos.tablaCategorias')
 
@@ -39,7 +40,7 @@
 
 		<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
             
-            @if($categoriaActual->nivel_actual < 2)
+            @if( $categoriaActual->id == 1 )
                 
                 <a id="addCategoria" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">
                     <i class="fa fa-tag"></i> Crear categoría
@@ -49,7 +50,7 @@
             @else
                 
                 <a id="addArticulo" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">
-                    <i class="fa fa-tag"></i> Crear articulo
+                    <i class="fa fa-tag"></i> Crear artículo
                 </a>
                 <br/>
 
@@ -60,7 +61,7 @@
 	</div>
 
     <!-- Cargamos modales  -->
-    @if( $categoriaActual->nivel_actual < 2 )
+    @if( $categoriaActual->nivel_actual < 1 )
 
         @include('administrador.Modales.crearCategoria')
 

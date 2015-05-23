@@ -54,19 +54,23 @@ class ArticuloController extends \BaseController {
 
         $articulo->nombre           = trim(ucwords(Input::get('nombre')));
 
+        $articulo->precio 			= Input::get('precio');
+
         $articulo->descripcion      = Input::get('descripcion');
 
         $articulo->ruta_corta       = '/img/articulos/'.Input::get('nombre_categoria').'/'.$name;
 
         $articulo->ruta_absoluta    = $dir.'/'.$name;
 
-        $articulo->slug 			= trim(Str::slug(Input::get('nombre')));			  
+        $articulo->slug 			= trim(Str::slug(Input::get('nombre')));
+
+        $articulo->provedores_id	= Input::get('proveedor');			  
 
         if( $file->move($dir, $name) ):			//  ---> Sube en Servidor
 
             if($articulo->save()):
 
-            	Image::make( $articulo->ruta_absoluta )->resize(800, 400)->save($articulo->ruta_absoluta);
+            	Image::make( $articulo->ruta_absoluta )->resize(700, 500)->save($articulo->ruta_absoluta);
 
                 $categoria_articulo =  DB::table('categorias_has_articulos')->insert([
 

@@ -3,25 +3,25 @@
         <div class="panel-body">
             <table class="table table-striped table-condensed">
                 <thead>
-                <th> # </th>
-                <th>Nombre</th>
-                <th>Fecha de creación</th>
-                <th>Opciones</th>
+                    <th> # </th>
+                    <th>Nombre</th>
+                    <th>Fecha de creación</th>
+                    <th>Opciones</th>
                 </thead>
                 <tbody>
-                @foreach($categorias as $categoria)
-                    <tr>
-                        <td><a href="/administrador/productos/categorias/{{ $categoria->slug }}"><img src="/img/folder.png" /></a></td>
-                        <td><a href="/administrador/productos/categorias/{{$categoria->slug}}">{{ $categoria->nombre }}</a></td>
+                    @foreach($categorias as $categoria)
+                        <tr>
+                            <td><a href="/administrador/productos/categorias/{{ $categoria->slug }}"><img src="/img/folder.png" /></a></td>
+                            <td><a href="/administrador/productos/categorias/{{$categoria->slug}}">{{ $categoria->nombre }}</a></td>
 
-                        <td>{{ $categoria->created_at }}</td>
-                        <td>
-                            <a data-nombre="{{ $categoria->nombre }}" data-id="{{$categoria->id}}" title="Cambiar nombre" class="opciones-table editar_categoria"><i class="fa fa-pencil-square-o"></i></a>
+                            <td>{{ $categoria->created_at }}</td>
+                            <td>
+                                <a data-nombre="{{ $categoria->nombre }}" data-id="{{$categoria->id}}" title="Cambiar nombre" class="opciones-table editar_categoria"><i class="fa fa-pencil-square-o"></i></a>
 
-                            <a data-nombre="{{ $categoria->nombre }}" data-id="{{ $categoria->id }}" title="borrar" class="opciones-table borrar_categoria"><i class="fa fa-trash-o"></i></a>
-                        </td>
-                    </tr>
-                @endforeach
+                                <a data-nombre="{{ $categoria->nombre }}" data-id="{{ $categoria->id }}" title="borrar" class="opciones-table borrar_categoria"><i class="fa fa-trash-o"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -36,6 +36,9 @@
 <script type="text/javascript">
 
     $(function(){
+
+        var responseTrue = '<div class="alert alert-success"><center><b>Categoria agregada correctamente</b></center></div>';
+        var responseFalse = '<div class="alert alert-danger"><center><b><i class="fa fa-times-circle"></i> Error al crear categoria o la categoría ya existe</b></center></div> ';
 
         $('.table').dataTable();
 
@@ -73,7 +76,7 @@
                             $('#container-categoria').html('');
                             $('#calncelar-categoria').hide();
                             $('#click-categoria').hide();
-                            $('#container-categoria').html("<center><b>Categoria agregada correctamente</b></center>");
+                            $('#container-categoria').html(responseTrue);
                             $('#response-categoria').show();
                             return false;
                         }else{
@@ -81,7 +84,7 @@
                             $('#container-categoria').html('');
                             $('#calncelar-categoria').hide();
                             $('#click-categoria').hide();
-                            $('#container-categoria').html("<center><b><i class='fa fa-times-circle'></i> Error al crear categoria o la categoría ya existe</b></center>");
+                            $('#container-categoria').html(responseFalse);
                             $('#response-categoria').show();
                             return false;
                         }

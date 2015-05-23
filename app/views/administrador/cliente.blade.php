@@ -2,6 +2,8 @@
 
 @section('contenido')
 
+<style></style>
+
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<h2><i class="fa fa-users"></i> Clientes</h2>
@@ -42,7 +44,7 @@
 							<td>
 								<center>
 									<label>Estatus</label><br>
-									@if($cliente->status == 0){{ 'Sin completar' }} @else  {{ 'Completado' }}  @endif
+										@if($cliente->status == 0){{ 'Sin completar' }} @else  {{ 'Completado' }}  @endif
 								</center>
 							</td>
 						</tr>

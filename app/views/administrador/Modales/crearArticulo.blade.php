@@ -36,26 +36,27 @@
                                     <input type="hidden" name="id_categoria" value="{{ $categoriaActual->id}}">
                                     <input type="hidden" name="nombre_categoria" value="{{ $categoriaActual->nombre}}">
                                 </div>
-                                <!--<div class="row">
+                                <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="" class="col-sm-3 control-label">Proveedor</label>
                                             <div class="col-sm-9">
                                                 <select class="form-control" id="proveedor" name="proveedor">
-                                                    <option value="1">Selecciona un proveedor</option>
+                                                    <option value="">Selecciona un proveedor</option>
+                                                    @foreach($proveedores as $proveedor)
+                                                    <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="" class="col-sm-6 control-label">Precio</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" id="precio" name="precio">
-                                            </div>
+                                        <div class="input-group margin-bottom-sm">
+                                            <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+                                            <input class="form-control" id="precio" name="precio" type="text" placeholder="Ej. 1000">
                                         </div>
                                     </div>
-                                </div>-->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +95,9 @@
             errorClass: "help-block",
             rules: {
                 nombre: {required: true},
-                descripcion: {required: true}
+                descripcion: {required: true},
+                proveedor: {required: true},
+                precio: {required:true, digits:true}
             },
             highlight: function(element, error) {
                 $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
@@ -105,6 +108,13 @@
             submitHandler: function() {
                submit();
             }
+        });
+
+        $("#imagen").fileinput({
+            allowedFileExtensions : ['jpg', 'png','gif'],
+            overwriteInitial: false,
+            maxFileSize: 2500,
+            maxFilesNum: 1
         });
     });
 </script>

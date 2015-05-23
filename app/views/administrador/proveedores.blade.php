@@ -17,7 +17,7 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<table class="table table-hover">
+					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th><center>Nombre</center></th>

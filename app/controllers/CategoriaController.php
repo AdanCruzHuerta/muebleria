@@ -28,11 +28,11 @@ class CategoriaController extends \BaseController {
 	{
         $administrador = $this->administrador;
 
-        $mensajes = $this->messages;
+        $mensajes = $this->messages;    
 
-        $categoriaActual = Categoria::find(1);
+        $categoriaActual = Categoria::find(1); // obtenemos la categoria raiz
 
-        $categorias = Helper::categorias($categoriaActual);
+        $categorias = Helper::categorias($categoriaActual); //categorias cuyo padre es raiz
 
 		return View::make('administrador.productosCategorias', compact('administrador','categoriaActual','categorias','mensajes'));
 
@@ -55,6 +55,8 @@ class CategoriaController extends \BaseController {
 
         $articulos = Helper::getArticulos($categoriaActual);
 
+        $proveedores = Proveedor::all();
+
         $new = false;
 
         if(Session::get('message')):
@@ -63,7 +65,7 @@ class CategoriaController extends \BaseController {
 
         endif;
 
-        return View::make('administrador.productosCategorias', compact('administrador','categoriaActual','categorias','articulos','new','mensajes'));
+        return View::make('administrador.productosCategorias', compact('administrador','categoriaActual','categorias','articulos','new','mensajes','proveedores'));
     }
 
 	/**
