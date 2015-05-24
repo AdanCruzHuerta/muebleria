@@ -25,7 +25,9 @@ Route::get('/productos', function(){
 
     $articulos = Helper::ArticulosProductos();
 
-	return View::make('tienda.productos', compact('categorias','articulos'));
+    $rango = false;
+
+	return View::make('tienda.productos', compact('categorias','articulos','rango'));
 
 });
 
@@ -42,6 +44,29 @@ Route::get('/tienda', function(){
 });
 
 
+Route::get('/productos/filter/', function(){
+	//$categoria_id = Input::get('categoria');
+
+		$rangoPrecios = explode(',', Input::get('rango-precios'));
+
+		$rango = Input::get('rango-precios');
+
+		if (! Input::has('categoria'))
+		{
+			$categorias = Helper::getCategoriasRaiz();
+
+		    $articulos = Helper::getArticulosForPrice($rangoPrecios);
+
+		    if($articulos->isEmpty())
+		    {
+		    	return Redirect::to('/productos');
+		    }
+
+		    return View::make('tienda.productos', compact('categorias','articulos','rango'));
+		}
+
+		return "Si eligio categoria";
+});
 
 Route::get('/productos/{name}', 'ArticuloController@show');
 
@@ -51,7 +76,9 @@ Route::get('/productos/categoria/{name}', function($name){
 
     $articulos = Helper::getArticulosForName($name);
 
-    return View::make('tienda.productos', compact('categorias','articulos'));
+    $rango = false;
+
+    return View::make('tienda.productos', compact('categorias','articulos', 'rango'));
 
 });
 

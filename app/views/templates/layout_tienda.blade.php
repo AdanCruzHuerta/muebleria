@@ -11,10 +11,9 @@
 		{{HTML::style('css/bootstrap.min.css')}}
 		{{HTML::style('css/font-awesome.min.css')}}
 		{{HTML::style('css/animate.min.css')}}
+		{{HTML::style('css/bootstrap-slider.css')}}
 		{{HTML::style('css/normalize.css')}}
 		{{HTML::style('css/urena-tienda.css')}}
-		{{HTML::script('js/jquery.min.js')}}
-		{{HTML::script('js/bootstrap.min.js')}}
 	</head>
 	<body>
 		<nav class="visible-xs">
@@ -104,6 +103,9 @@
 						</div> 
 					</div>
 				</nav>
+				{{HTML::script('js/jquery.min.js')}}
+				{{HTML::script('js/bootstrap.min.js')}}
+				{{HTML::script('js/bootstrap-slider.js')}}
 
 				@yield('contenido')
 				

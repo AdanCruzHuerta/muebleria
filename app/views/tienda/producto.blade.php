@@ -28,6 +28,10 @@
 											<td>{{ $articulo->nombre }}</td>
 										</tr>
 										<tr>
+											<td><b>Precio</b></td>
+											<td>{{ "$ ".$articulo->precio.".00" }}</td>
+										</tr>
+										<tr>
 											<td><b>Especificaciones</b>&nbsp;&nbsp;</td>
 											<td> {{ $articulo->descripcion }} </td>
 										</tr>

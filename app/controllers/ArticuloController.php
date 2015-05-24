@@ -4,6 +4,8 @@ class ArticuloController extends \BaseController {
 
 	public function __construct()
 	{
+		$this->beforeFilter('csrf', array('on' => 'post'));
+
 		$this->beforeFilter('@getAdmin', ['only' => ['index']]);
 
 		$this->beforeFilter('@getMessages', ['only' => ['index']]);

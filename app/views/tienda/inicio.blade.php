@@ -99,9 +99,10 @@
 									<div class="thumbnail">
 										<img class="article" src="{{ $articulo->ruta_corta }}" alt="Muebles de Mueblería Ureña"><br>
 										<div class="label label-info"><i class="fa fa-tag"></i> Nuevo!</div>
+
 										<div class="caption">
-											<h5><b>{{ $articulo->nombre }}</b></h5>
-											<p><a href="/producto/nuevo/{{$articulo->slug}}" class="btn btn-primary btn-block articulo">Ver detalles</a></p>
+											<h5><b>{{ $articulo->nombre.' - $'.$articulo->precio.'.00' }}</b></h5>
+											<p><a href="/producto/nuevo/{{$articulo->slug}}" class="btn btn-primary btn-block articulo"><i class="fa fa-book"></i> Ver detalles</a></p>
 										</div><!-- end caption-->
 									</div>
 								</div><!-- end col-3-->
