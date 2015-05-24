@@ -51,9 +51,7 @@ class CategoriaController extends \BaseController {
 
         $categoriaActual = DB::table('categorias')->where('slug', '=', $nombre)->first();
 
-        $categorias = Helper::categorias($categoriaActual);
-
-        $articulos = Helper::getArticulos($categoriaActual);
+        $articulos = Helper::getArticulos($categoriaActual->id);
 
         $proveedores = Proveedor::all();
 
@@ -65,7 +63,7 @@ class CategoriaController extends \BaseController {
 
         endif;
 
-        return View::make('administrador.productosCategorias', compact('administrador','categoriaActual','categorias','articulos','new','mensajes','proveedores'));
+        return View::make('administrador.productosCategorias', compact('administrador','categoriaActual','articulos','new','mensajes','proveedores'));
     }
 
 	/**

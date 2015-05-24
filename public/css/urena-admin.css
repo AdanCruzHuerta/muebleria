@@ -480,18 +480,6 @@ table.dataTable thead .sorting:after {
 .selected-perfil{
     background: #CCC;
 }
-.thumbnail{
-    margin: 0 auto;
-    margin-bottom: 10px;
-    position: relative;
-    width: 123px;
-    height: 145px;
-}
-.thumbnail a{
-    position: absolute;
-    display: none;
-    margin-top: 10px;
-}
 .thumbnail input[type=file] {
     position: absolute;
     visibility: hidden;

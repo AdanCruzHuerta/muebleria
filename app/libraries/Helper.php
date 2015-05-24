@@ -110,15 +110,15 @@ class Helper {
         return $response;
     }
 
-    static function getArticulos($categoriaActual)
+    static function getArticulos($id)
     {
         $articulos = DB::table('categorias as c')
 
-            ->join('categorias_has_articulos as c_a', function($join) use($categoriaActual){
+            ->join('categorias_has_articulos as c_a', function($join) use($id){
 
                 $join->on('c.id','=','c_a.categorias_id')
 
-                    ->where('c.id','=', $categoriaActual->id);
+                    ->where('c.id','=', $id);
 
             })->join('articulos as a', function($join){
 
@@ -126,7 +126,7 @@ class Helper {
 
             })->select('a.id','a.nombre','a.ruta_corta')
 
-            ->paginate(9);
+            ->paginate(6);
 
         return $articulos;
     }
@@ -147,9 +147,11 @@ class Helper {
 
                 $join->on('c_a.articulos_id','=','a.id');
 
-            })->select('a.id','a.nombre','a.ruta_corta')
+            })->select('a.id','a.nombre','a.ruta_corta','a.slug')
 
             ->paginate(6);
+
+        return $articulos;
     }
 
     static function getArticulo($name)

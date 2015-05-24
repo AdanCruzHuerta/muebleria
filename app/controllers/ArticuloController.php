@@ -42,62 +42,69 @@ class ArticuloController extends \BaseController {
 	 */
 	public function store()
 	{
+
+		try{
         // almacenamos imagen en el servidor
 
-        $file = Input::file('imagen');
+	        $file = Input::file('imagen');
 
-        $name = $file->getClientOriginalName();	//	---> nombre de imagen
+	        $name = $file->getClientOriginalName();	//	---> nombre de imagen
 
-        $dir = public_path().'/img/articulos/'.Input::get('nombre_categoria');	//  ---> ruta relativa dir
+	        $dir = public_path().'/img/articulos/'.Input::get('nombre_categoria');	//  ---> ruta relativa dir
 
-        $articulo = new Articulo();
+	        $articulo = new Articulo();
 
-        $articulo->nombre           = trim(ucwords(Input::get('nombre')));
+	        $articulo->nombre           = trim(ucwords(Input::get('nombre')));
 
-        $articulo->precio 			= Input::get('precio');
+	        $articulo->precio 			= Input::get('precio');
 
-        $articulo->descripcion      = Input::get('descripcion');
+	        $articulo->descripcion      = Input::get('descripcion');
 
-        $articulo->ruta_corta       = '/img/articulos/'.Input::get('nombre_categoria').'/'.$name;
+	        $articulo->ruta_corta       = '/img/articulos/'.Input::get('nombre_categoria').'/'.$name;
 
-        $articulo->ruta_absoluta    = $dir.'/'.$name;
+	        $articulo->ruta_absoluta    = $dir.'/'.$name;
 
-        $articulo->slug 			= trim(Str::slug(Input::get('nombre')));
+	        $articulo->slug 			= trim(Str::slug(Input::get('nombre')));
 
-        $articulo->provedores_id	= Input::get('proveedor');			  
+	        $articulo->provedores_id	= Input::get('proveedor');			  
 
-        if( $file->move($dir, $name) ):			//  ---> Sube en Servidor
+	        if( $file->move($dir, $name) ):			//  ---> Sube en Servidor
 
-            if($articulo->save()):
+	            if($articulo->save()):
 
-            	Image::make( $articulo->ruta_absoluta )->resize(700, 500)->save($articulo->ruta_absoluta);
+	            	Image::make( $articulo->ruta_absoluta )->resize(700, 500)->save($articulo->ruta_absoluta);
 
-                $categoria_articulo =  DB::table('categorias_has_articulos')->insert([
+	                $categoria_articulo =  DB::table('categorias_has_articulos')->insert([
 
-                                            'categorias_id'   => Input::get('id_categoria'),
+	                                            'categorias_id'   => Input::get('id_categoria'),
 
-                                            'articulos_id'  => $articulo->id
-                                        ]);
+	                                            'articulos_id'  => $articulo->id
+	                                        ]);
 
-                if($categoria_articulo):
+	                if($categoria_articulo):
 
-                    return Redirect::action('CategoriaController@getCategorias', ['nombre'=>Input::get('nombre_categoria')])->with('message', true);
+	                    return Redirect::action('CategoriaController@getCategorias', ['nombre'=>Input::get('nombre_categoria')])->with('message', true);
 
-                else:
+	                else:
 
-                    return false;
+	                    return false;
 
-                endif;
+	                endif;
 
-            else:
+	            else:
 
-                return false;
+	                return false;
 
-            endif;
+	            endif;
 
-        else:
+	        else:
 
-        endif;
+	        endif;
+		}
+		catch( Exception $e )
+		{	
+			return Redirect::back()->withErrors(['error', true]);
+		}
 	}
 
 

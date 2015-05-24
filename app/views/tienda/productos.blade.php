@@ -2,7 +2,6 @@
 
 @section('contenido')
 	<section>
-		{{HTML::style('css/thumbnail-gallery.css')}}
         <style>.article{width: 245px !important;height: 180px !important;}.contenido{color: #A24B2D !important; text-align: justify; font-size: 14px;}.atributos{color: #333333;}.paginacion{background-color: #fff;border: 1px solid #ddd;border-radius: 15px;display: inline-block;padding: 5px 14px;}</style>
 
 		<div class="container">
@@ -23,7 +22,7 @@
                         <ul class="nav" id="side-menu">
                             @foreach($categorias as $categoria)
                                 <li>
-                                    <a href="/productos/categoria/{{$categoria->slug}}">
+                                    <a href="/productos/categoria/{{$categoria->slug}}" class="">
                                         <i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;{{ ucwords(strtolower($categoria->nombre)) }}
                                     </a>
                                 </li>

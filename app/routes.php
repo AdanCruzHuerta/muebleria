@@ -49,8 +49,7 @@ Route::get('/productos/categoria/{name}', function($name){
 
     $categorias = Helper::getCategoriasRaiz();
 
-    $articulos = Helper::ArticulosProductos();
-    //$articulos = Helper::getArticulosForName($name);
+    $articulos = Helper::getArticulosForName($name);
 
     return View::make('tienda.productos', compact('categorias','articulos'));
 

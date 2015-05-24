@@ -545,6 +545,9 @@ h2{color:#0b56a8;}
 #side-menu > li > a:hover{
     color: #A24C32 !important;
 }
+#side-menu > li > .menu-active{
+  color: #A24C32 !important;
+}
 .nav .arrow {
     float: right;
 }
