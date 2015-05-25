@@ -177,6 +177,15 @@ class Helper {
         return $articulos;
     }
 
+    static function getArticulosForPriceCategory($prices, $categoria)
+    {
+        $between = array((int)$prices[0], (int)$prices[1]);
+
+        $categoria = $categoria;
+
+        
+    }
+
     static function getArticulo($name)
     {
         $articulo = Articulo::where('slug','=', $name)->first();

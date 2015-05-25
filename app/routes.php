@@ -45,15 +45,15 @@ Route::get('/tienda', function(){
 
 
 Route::get('/productos/filter/', function(){
-	//$categoria_id = Input::get('categoria');
 
 		$rangoPrecios = explode(',', Input::get('rango-precios'));
 
 		$rango = Input::get('rango-precios');
 
+		$categorias = Helper::getCategoriasRaiz();
+
 		if (! Input::has('categoria'))
 		{
-			$categorias = Helper::getCategoriasRaiz();
 
 		    $articulos = Helper::getArticulosForPrice($rangoPrecios);
 
@@ -65,7 +65,11 @@ Route::get('/productos/filter/', function(){
 		    return View::make('tienda.productos', compact('categorias','articulos','rango'));
 		}
 
-		return "Si eligio categoria";
+		$categoria = Input::get('categoria');
+
+		$articulos = Helper::getArticulosForPriceCategory($rangoPrecios, $categoria);
+
+		
 });
 
 Route::get('/productos/{name}', 'ArticuloController@show');

@@ -4,6 +4,8 @@
 	<?php 
 		$categoriaActual = explode('/', Request::path());
 		$categoriaActual = end($categoriaActual);
+
+		$precios = explode(',', $rango);
 	?>
 	<section>
         <style>.article{width: 245px !important;height: 180px !important;}.contenido{color: #A24B2D !important; text-align: justify; font-size: 14px;}.atributos{color: #333333;}.paginacion{background-color: #fff;border: 1px solid #ddd;border-radius: 15px;display: inline-block;padding: 5px 14px;}</style>
@@ -37,12 +39,12 @@
 							<div>
 								<b class="pull-left">$ 0</b>
 	                    		<b class="pull-right">$ 10000</b> 
-	                    		<input id="ex2" type="text" class="span2" value="" data-slider-min="0" data-slider-max="10000" data-slider-step="100" data-slider-value="[500, 10000]" name="rango-precios" /> 	
+	                    		<input id="ex2" type="text" class="span2" value="" name="rango-precios" data-slider-min="0" data-slider-max="10000" data-slider-step="100" data-slider-value='@if(!$rango) {{ "[500,10000]" }} @else {{ "[$precios[0],$precios[1]]" }} @endif'/>	                    		
 							</div><br>
 							@foreach($categorias as $categoria)
 								<div class="radio">
 									<label>
-								    	<input type="radio" name="categoria" value="{{ $categoria->id }}">
+								    	<input type="radio" name="categoria" value="{{ $categoria->slug }}">
 								    	<b>{{ ucwords(strtolower($categoria->nombre)) }}</b>
 								  	</label>
 								</div>
