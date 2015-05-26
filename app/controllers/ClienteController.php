@@ -2,6 +2,10 @@
 
 class ClienteController extends \BaseController {
 
+	/*
+	|	Seccion para el ADMINISTRADOR
+	*/
+
 	public function __construct()
 	{	
 		$this->beforeFilter('@getAdmin', ['only' => ['index','show'] ]);

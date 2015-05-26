@@ -10,7 +10,8 @@
 		"way/generators": "~2.0",
 		"barryvdh/laravel-ide-helper": "~1.11",
 		"fzaninotto/faker": "1.5.*@dev",
-		"intervention/image": "~2.1"
+		"intervention/image": "~2.1",
+		"guzzlehttp/guzzle": "~4.0"
 	},
 	"autoload": {
 		"classmap": [

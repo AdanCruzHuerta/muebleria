@@ -49,7 +49,7 @@
 										<input type="password" class="form-control" name="password" placeholder="Ingresa tu contraseña" required>
 									</div>
 									<div class="form-group">
-										<a href="">¿Olvidaste tu contraseña?</a>
+										<a href="javascript:;" id="recupera-password" >¿Olvidaste tu contraseña?</a>
 									</div>
 								</div>
 								<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-sign-in"></i> Iniciar</button>
@@ -122,6 +122,8 @@
 						</div>
 					</div>
 				</div>
+
+				@include('tienda.modales.recuperaPassword')
 			
 			</div>
 	
@@ -172,6 +174,13 @@
 				});
 			}
 		});
+
+		$("#recupera-password").click(function(){
+            $("#modal-password").modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        });
 
 	});
 </script>

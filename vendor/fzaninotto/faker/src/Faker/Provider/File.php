@@ -584,7 +584,13 @@ class File extends \Faker\Provider\Base
         }
 
         // Drop . and .. and reset array keys
-        $files = array_values(array_diff(scandir($sourceDirectory), array('.', '..')));
+        $files = array_filter(array_values(array_diff(scandir($sourceDirectory), array('.', '..'))), function ($file) use ($sourceDirectory) {
+            return is_file($sourceDirectory . DIRECTORY_SEPARATOR . $file) && is_readable($sourceDirectory . DIRECTORY_SEPARATOR . $file);
+        });
+
+        if (empty($files)) {
+            throw new \InvalidArgumentException(sprintf('Source directory %s is empty.', $sourceDirectory));
+        }
 
         $sourceFullPath = $sourceDirectory . DIRECTORY_SEPARATOR . static::randomElement($files);
 

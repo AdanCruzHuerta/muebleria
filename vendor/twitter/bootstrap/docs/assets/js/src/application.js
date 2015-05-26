@@ -4,7 +4,7 @@
 
 /*!
  * JavaScript for Bootstrap's docs (http://getbootstrap.com)
- * Copyright 2011-2014 Twitter, Inc.
+ * Copyright 2011-2015 Twitter, Inc.
  * Licensed under the Creative Commons Attribution 3.0 Unported License. For
  * details, see http://creativecommons.org/licenses/by/3.0/.
  */
@@ -145,30 +145,30 @@
         .data('placement', 'top')
         .attr('title', 'Copy to clipboard')
         .tooltip()
+
+
+      // Copy to clipboard
+      zeroClipboard.on('dataRequested', function (client) {
+        var highlight = $(this).parent().nextAll('.highlight').first()
+        client.setText(highlight.text())
+      })
+
+      // Notify copy success and reset tooltip title
+      zeroClipboard.on('complete', function () {
+        htmlBridge
+          .attr('title', 'Copied!')
+          .tooltip('fixTitle')
+          .tooltip('show')
+          .attr('title', 'Copy to clipboard')
+          .tooltip('fixTitle')
+      })
     })
 
-    // Copy to clipboard
-    zeroClipboard.on('dataRequested', function (client) {
-      var highlight = $(this).parent().nextAll('.highlight').first()
-      client.setText(highlight.text())
-    })
-
-    // Notify copy success and reset tooltip title
-    zeroClipboard.on('complete', function () {
-      htmlBridge
-        .attr('title', 'Copied!')
-        .tooltip('fixTitle')
-        .tooltip('show')
-        .attr('title', 'Copy to clipboard')
-        .tooltip('fixTitle')
-    })
-
-    // Notify copy failure
+    // Hide copy button when no Flash is found
+    // or wrong Flash version is present
     zeroClipboard.on('noflash wrongflash', function () {
-      htmlBridge
-        .attr('title', 'Flash required')
-        .tooltip('fixTitle')
-        .tooltip('show')
+      $('.zero-clipboard').remove()
+      ZeroClipboard.destroy()
     })
 
   })
@@ -177,5 +177,5 @@
 
 ;(function () {
   'use strict';
-  addAnchors('.bs-docs-container h1, .bs-docs-container h2, .bs-docs-container h3, .bs-docs-container h4, .bs-docs-container h5');
+  addAnchors('.bs-docs-section > h1, .bs-docs-section > h2, .bs-docs-section > h3, .bs-docs-section > h4, .bs-docs-section > h5');
 })();

@@ -181,9 +181,27 @@ class Helper {
     {
         $between = array((int)$prices[0], (int)$prices[1]);
 
-        $categoria = $categoria;
+        $slug = $categoria;
 
-        
+        $articulos = DB::table('categorias as c')
+
+            ->join('categorias_has_articulos as c_a', function($join) use($slug){
+
+                $join->on('c.id','=','c_a.categorias_id')
+
+                ->where('c.slug','=', $slug);
+            
+            })->join('articulos as a', function($join){
+
+                $join->on('c_a.articulos_id','=','a.id');
+
+            })->whereBetween('a.precio', $between)
+
+            ->select('a.id','a.nombre','a.precio','a.ruta_corta','a.slug','c.nombre as nombre_categoria')
+
+            ->orderBy('a.precio', 'desc')->paginate(6);
+
+            return $articulos;
     }
 
     static function getArticulo($name)

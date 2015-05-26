@@ -8,7 +8,14 @@ class LoginController extends \BaseController {
     public function __construct()
     {
         $this->beforeFilter('csrf', array('on' => 'post'));
+
+        $this->beforeFilter('@getCliente', ['only' => ['store'] ]);
     }
+
+   	public function getCliente()
+	{
+		$this->cliente = Config::get('constants.DATA_CLIENTE');
+	}
 
 
 	/**
@@ -38,11 +45,13 @@ class LoginController extends \BaseController {
 
 		if(Auth::attempt(Input::only('email','password'))):
 
-		 	if( Auth::user()->roles_id == 1 ) 		// CLIENTE
+		 	if( Auth::user()->roles_id == 1 ):	// CLIENTE
+
+		 		Session::set('cliente', $this->cliente );
 		 	 		
 		 		return Redirect::to('/');
 			
-		 	else if( Auth::user()->roles_id == 2 ) // EMPLEADO
+		 	else if( Auth::user()->roles_id == 2 ): // EMPLEADO
 		 	 
 		 		return Redirect::to('/empleado');
 			

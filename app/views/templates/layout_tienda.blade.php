@@ -33,8 +33,18 @@
 								<li><a href="/productos">Productos</a></li>
 								<li><a href="/contacto">Contacto</a></li>
 								<li><a href="/tienda">Tienda en Linea</a></li>
-								<li><a href="/cuenta">Iniciar Sesion / Registrate</a></li>
+								@if(Auth::user())
+
+									@if(Auth::user()->roles_id == 1)
+										
+										<li><a href="#">Perfil</a></li>
+
+									@endif
+								@else 
+									<li><a href="/cuenta">Iniciar Sesion / Registrate</a></li>
+								@endif
 								<li><a href="/carrito">Ver carrito</a></li>
+								<li><a href="/salir">Salir</a></li>
 							</ul>
 						</div>
 					</div>
@@ -54,10 +64,14 @@
 								@if(Auth::user()) 
 
 									@if(Auth::user()->roles_id == 1)
+									
+											<button id="opciones_tienda_2" type="button" class="btn btn-default btn-lg pull-right dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <i class="fa fa-caret-down"></i></button>
+											<ul class="dropdown-menu pull-right opciones-user" role="menu">
+												<li><a href="#"><i class="fa fa-user"></i> Perfil</a></li>
+												<li><a href="/salir"><i class="fa fa-sign-out"></i>Salir</a></li>
+											</ul>
 
-										<a href="/cuenta" id="opciones_tienda_2" type="button" class="btn btn-default btn-lg pull-right" title="Iniciar Sesión / Registrarse"><i class="fa fa-user"></i></a>
-								
-										<a href="/carrito" id="carrito_compra" type="button" class="btn btn-default btn-lg pull-right opciones_cliente" title="Ver carrito"><i class="fa fa-shopping-cart"></i></a>
+											<a href="/carrito" id="carrito_compra" type="button" class="btn btn-default btn-lg pull-right"><i class="fa fa-shopping-cart"></i></a>
 
 									@else
 
@@ -89,7 +103,7 @@
 									<li class="@if( $path =='/' || $path == 'cuenta'){{'activo'}} @endif">
 										<a href="/" class="btn_nav">Inicio</a>
 									</li>
-									<li class="@if($path =='productos' || $route == 'productos/categoria/{name}' || $route == 'producto/nuevo/{name}' || $route == 'productos/{name}'){{'activo'}} @endif">
+									<li class="@if($path =='productos' || $path == 'productos/filter' || $route == 'productos/categoria/{name}' || $route == 'producto/nuevo/{name}' || $route == 'productos/{name}'){{'activo'}} @endif">
 										<a href="/productos" class="btn_nav">Productos</a>
 									</li>
 									<li class="@if($path =='contacto'){{'activo'}} @endif">
@@ -241,6 +255,7 @@
 
 				$('.opciones_cliente').tooltip();
 				
+				$('.dropdown-toggle').dropdown();
 			});
 		</script>
 	</body>

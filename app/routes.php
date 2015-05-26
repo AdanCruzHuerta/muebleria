@@ -27,7 +27,9 @@ Route::get('/productos', function(){
 
     $rango = false;
 
-	return View::make('tienda.productos', compact('categorias','articulos','rango'));
+    $slug = false;
+
+	return View::make('tienda.productos', compact('slug','categorias','articulos','rango'));
 
 });
 
@@ -52,8 +54,11 @@ Route::get('/productos/filter/', function(){
 
 		$categorias = Helper::getCategoriasRaiz();
 
+		$slug = Input::get('categoria');
+
 		if (! Input::has('categoria'))
 		{
+			$slug = false;
 
 		    $articulos = Helper::getArticulosForPrice($rangoPrecios);
 
@@ -62,13 +67,17 @@ Route::get('/productos/filter/', function(){
 		    	return Redirect::to('/productos');
 		    }
 
-		    return View::make('tienda.productos', compact('categorias','articulos','rango'));
+		    return View::make('tienda.productos', compact('slug','categorias','articulos','rango'));
 		}
 
-		$categoria = Input::get('categoria');
+		$articulos = Helper::getArticulosForPriceCategory($rangoPrecios, $slug);
 
-		$articulos = Helper::getArticulosForPriceCategory($rangoPrecios, $categoria);
+		if($articulos->isEmpty())
+		{
+			return Redirect::to('/productos');
+		}
 
+		return View::make('tienda.productos', compact('slug','categorias','articulos','rango'));	
 		
 });
 
@@ -82,7 +91,9 @@ Route::get('/productos/categoria/{name}', function($name){
 
     $rango = false;
 
-    return View::make('tienda.productos', compact('categorias','articulos', 'rango'));
+    $slug = false;
+
+    return View::make('tienda.productos', compact('slug','categorias','articulos', 'rango'));
 
 });
 
@@ -95,6 +106,16 @@ Route::get('/cuenta', function(){
 	return View::make('tienda.cuenta');
 
 });
+
+Route::get('/salir', function(){
+
+	Auth::logout();		// cierra la sesion
+
+	return Redirect::to('/');
+
+});
+
+Route::post('/cuenta/changePassword', 'userController@changePassword');
 
 Route::get('/carrito', function(){
 	
@@ -241,7 +262,7 @@ Route::group(['before'=>'auth'], function(){
 	| 		Rutas de Cliente
 	|--------------------------------------------------------------------------
 	*/
-
+	
 
 	/*
 	|--------------------------------------------------------------------------
