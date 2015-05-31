@@ -1,3 +1,5 @@
+<meta name="_token" content="{{ csrf_token() }}"/>
+
 <style>.article{width: 245px !important;height: 180px !important;}.contenido{color: #A24B2D !important;text-align: justify;font-size: 14px;}.atributos{color: #333333;}.paginacion{background-color: #fff;border: 1px solid #ddd;border-radius: 15px;display: inline-block;padding: 5px 14px;}.thumbnail > .caption{padding: 3px !important;}.thumbnail > .caption > h4{margin: 0px;}</style>
 
 @if($new)
@@ -34,7 +36,7 @@
                             <a class="btn btn-primary editArticle" data-article="{{ $articulo->id }}">
                                 <i class="fa fa-book"></i> Ver detalles
                             </a>
-                            <a class="btn btn-danger deleteArticle" data-article="{{ $articulo->id }}">
+                            <a class="btn btn-danger deleteArticle" data-article="{{ $articulo->id }}" data-nombre="{{ $articulo->nombre }}">
                                 <i class="fa fa-trash-o"></i> Borrar
                             </a>
                         </center>
@@ -53,6 +55,8 @@
 </div>
 
 @include('administrador.Modales.editarArticulo')
+
+@include('administrador.Modales.eliminarArticulo')
 
 {{ HTML::script('js/validate.js') }}
 {{ HTML::script('js/messages_es.js') }}
@@ -87,12 +91,6 @@
 
         $('#addArticulo').click(function(){
             $('#modal-articulo').modal('show');
-        });
-
-        $('.deleteArticle').click(function(){
-             var id = $(this).attr('data-article');
-
-            
         });
 
     });

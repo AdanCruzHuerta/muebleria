@@ -262,6 +262,8 @@ Route::group(['before'=>'auth'], function(){
 		}
     });
 
+    Route::post('/administrador/productos/delete', 'ArticuloController@destroy');
+
 	/*
 	 *  Ruta de Logout
 	 */
@@ -287,6 +289,8 @@ Route::group(['before'=>'auth-cliente'], function(){
 	Route::post('/cliente/perfil/save', 'ClienteController@update');
 
 	Route::post('/cliente/perfil/save-direccion', 'ClienteController@updateDireccion');
+
+	Route::post('/cliente/addCart', 'CarritoController@store');
 
 });
 

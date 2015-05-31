@@ -130,7 +130,7 @@
                                 <a href="/administrador/empleados" class="@if($path =='administrador/empleados') {{'active'}} @endif"><i class="fa fa-user"></i> Empleados</a>
                             </li>
 	                        <li>
-	                            <a href="#" class="@if($path == 'administrador/pagina' || $path == 'administrador/pagina/slider' ) {{ 'active' }} @endif" ><i class="fa fa-desktop fa-fw"></i> Pagina<span class="fa arrow"></span></a>
+	                            <a href="#" class="@if($path == 'administrador/pagina' || $path == 'administrador/pagina/videos' || $path == 'administrador/pagina/slider' ) {{ 'active' }} @endif" ><i class="fa fa-desktop fa-fw"></i> Pagina<span class="fa arrow"></span></a>
 	                            <ul class="nav nav-second-level">
 	                            	<li href="#">
 	                            		<a href="/administrador/pagina/slider" class="@if($path =='administrador/pagina/slider') {{'active'}} @endif">Slider</a>

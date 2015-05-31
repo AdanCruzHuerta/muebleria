@@ -113,9 +113,19 @@ class ArticuloController extends \BaseController {
 		
 	}
 
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+		$articulo = Articulo::find(Input::get('id'));
+
+		if($articulo->delete())
+		{
+
+			return Response::json(true);
+			
+		}
+
+		return Response::json(false);
+
 	}
 
 

@@ -42,7 +42,7 @@
     				</center>
   				</div>
 			  	<div class="panel-body">
-			  		<table class="table table-bordered table-striped">
+			  		<table class="table table-striped">
 						<tr>
 							<td>
 								<center>

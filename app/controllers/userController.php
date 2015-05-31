@@ -54,6 +54,7 @@ class userController extends \BaseController {
 			}
 			catch(Exception $ex)
 			{
+
 				DB::rollback();
 
 				return Response::json(false);

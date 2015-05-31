@@ -69,6 +69,7 @@
 
 											<ul class="dropdown-menu pull-right opciones-user" role="menu">
 												<li><a href="/cliente/perfil"><i class="fa fa-user"></i> Perfil</a></li>
+												<li><a href=""><i class="fa fa-money"></i> Mis compras</a></li>
 												<li><a href="/salir"><i class="fa fa-sign-out"></i>Salir</a></li>
 											</ul>
 
