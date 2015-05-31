@@ -124,9 +124,9 @@ class Helper {
 
                 $join->on('c_a.articulos_id','=','a.id');
 
-            })->select('a.id','a.nombre','a.ruta_corta')
+            })->select('a.id','a.nombre','a.ruta_corta','a.precio')
 
-            ->paginate(6);
+            ->orderBy('a.nombre')->paginate(6);
 
         return $articulos;
     }
@@ -207,6 +207,23 @@ class Helper {
     static function getArticulo($name)
     {
         $articulo = Articulo::where('slug','=', $name)->first();
+
+        return $articulo;
+    }
+
+    static function getDetalleArticulo($id)
+    {
+        $articulo = DB::table('articulos as a')
+
+                ->join('proveedores as p', function($join) use($id){
+
+                     $join->on('a.provedores_id', '=' ,'p.id')
+
+                     ->where('a.id', '=', $id);
+
+                })->select('a.id','a.nombre','a.ruta_corta','a.descripcion','a.precio','p.id as proveedor')
+
+                ->first();
 
         return $articulo;
     }

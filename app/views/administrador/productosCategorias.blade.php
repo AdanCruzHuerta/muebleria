@@ -17,6 +17,7 @@
                 @else
                 
                     <li><a href="/administrador">Home</a></li>
+                    <li class="active"><span>Productos</span></li>
                     <li><a href="/administrador/productos/categorias">Categorías</a></li>
                     <li class="active"><span>{{ ucwords(strtolower($categoriaActual->nombre)) }}</span></li>
                 

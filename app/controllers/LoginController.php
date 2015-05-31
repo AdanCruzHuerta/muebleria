@@ -8,14 +8,7 @@ class LoginController extends \BaseController {
     public function __construct()
     {
         $this->beforeFilter('csrf', array('on' => 'post'));
-
-        $this->beforeFilter('@getCliente', ['only' => ['store'] ]);
     }
-
-   	public function getCliente()
-	{
-		$this->cliente = Config::get('constants.DATA_CLIENTE');
-	}
 
 
 	/**
@@ -27,7 +20,14 @@ class LoginController extends \BaseController {
 	{
 		if(Auth::check()): // verifica que exista la sesion
 
-			return Redirect::to('administrador/panel');
+			if(Auth::user()->roles_id == 3)	// administrador
+			{
+				return Redirect::to('administrador/panel');	
+			}
+			else
+			{
+				return Redirect::to('/');
+			}
 
 		endif;
 
@@ -43,23 +43,29 @@ class LoginController extends \BaseController {
 	public function store()
 	{ 
 
-		if(Auth::attempt(Input::only('email','password'))):
+		if(Auth::attempt(Input::only('email','password')))
+		{
 
-		 	if( Auth::user()->roles_id == 1 ):	// CLIENTE
+		 	if(Auth::user()->roles_id == 1)
+		 	{	// CLIENTE
 
-		 		Session::set('cliente', $this->cliente );
+		 		Session::set('cliente', Config::get('constants.DATA_CLIENTE') );
 		 	 		
 		 		return Redirect::to('/');
-			
-		 	else if( Auth::user()->roles_id == 2 ): // EMPLEADO
-		 	 
+			}
+		 	
+		 	else if(Auth::user()->roles_id == 2) // EMPLEADO
+		 	{
+
 		 		return Redirect::to('/empleado');
-			
+			}
 		 	else									// GERENTE
-		 		
+		 	{	
 		 		return Redirect::to('administrador/panel');
 
-		 endif;
+		 	}
+
+		}
 
 		return Redirect::back()->with('error', true);
 

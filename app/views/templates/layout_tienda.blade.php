@@ -37,7 +37,7 @@
 
 									@if(Auth::user()->roles_id == 1)
 										
-										<li><a href="#">Perfil</a></li>
+										<li><a href="/cliente/perfil">Perfil</a></li>
 
 									@endif
 								@else 
@@ -65,9 +65,10 @@
 
 									@if(Auth::user()->roles_id == 1)
 									
-											<button id="opciones_tienda_2" type="button" class="btn btn-default btn-lg pull-right dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <i class="fa fa-caret-down"></i></button>
+											<button id="opciones_tienda_2" type="button" class="btn btn-default btn-lg pull-right dropdown-toggle" data-toggle="dropdown">{{ Session::get('cliente')->nombre." ".Session::get('cliente')->apellido_p }} <i class="fa fa-caret-down"></i></button>
+
 											<ul class="dropdown-menu pull-right opciones-user" role="menu">
-												<li><a href="#"><i class="fa fa-user"></i> Perfil</a></li>
+												<li><a href="/cliente/perfil"><i class="fa fa-user"></i> Perfil</a></li>
 												<li><a href="/salir"><i class="fa fa-sign-out"></i>Salir</a></li>
 											</ul>
 

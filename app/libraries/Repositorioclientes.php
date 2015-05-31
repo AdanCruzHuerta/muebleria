@@ -61,9 +61,9 @@ class Repositorioclientes
 
 	        		 'personas.apellido_m','personas.ciudad','personas.calle','personas.codigo_postal',
 
-	        		 'personas.numero_ext','personas.numero_int','personas.telefono','municipios.nombre',
+	        		 'personas.numero_ext','personas.numero_int','personas.telefono','personas.status',
 
-	        		 'estados.nombre')	        
+	        		 'municipios.nombre as municipio','estados.nombre as estado')	        
 	      
 	        ->first();
 

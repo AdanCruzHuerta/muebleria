@@ -8,9 +8,15 @@ class ClienteController extends \BaseController {
 
 	public function __construct()
 	{	
+		$this->beforeFilter('csrf', array('on' => 'post'));
+
 		$this->beforeFilter('@getAdmin', ['only' => ['index','show'] ]);
 
 		$this->beforeFilter('@getMessages', ['only' => ['index','show'] ]);
+
+		$this->beforeFilter('@getCliente', ['only' => ['showDataCliente','edit','editAdress'] ]);
+
+		$this->beforeFilter('@getPersona', ['only' => ['editAdress'] ]);
 	}
 
 	public function getAdmin()
@@ -21,6 +27,16 @@ class ClienteController extends \BaseController {
 	public function getMessages()
 	{
 		$this->messages = Config::get('constants.DATA_MESSAGES');
+	}
+
+	public function getCliente()
+	{
+		$this->cliente = Config::get('constants.DATA_CLIENTE');
+	}
+
+	public function getPersona()
+	{
+		$this->persona = Config::get('constants.DATA_PERSONA');
 	}
 
 	/**
@@ -68,30 +84,94 @@ class ClienteController extends \BaseController {
 
 	}
 
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
+	public function showDataCliente()
 	{
-		//
+		$dataCliente = $this->cliente;
+
+		return View::make('tienda.resources.cuentaCliente', compact('dataCliente'));
 	}
 
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+	public function edit()
 	{
-		//
+		$dataCliente = $this->cliente;
+
+		return View::make('tienda.resources.editarCuenta', compact('dataCliente'));
+
+
 	}
 
+	public function editAdress()
+	{
+		$dataCliente = $this->cliente;
+
+		$estados = Estado::all();
+
+		$municipios = Municipio::all();
+		
+		if($dataCliente->status == 0)
+		{
+			return View::make('tienda.resources.guardarDireccion', compact('dataCliente','estados','municipios'));
+		}
+
+		$dataPersona = $this->persona;
+
+		return View::make('tienda.resources.editarDireccion', compact('dataCliente','estados','dataPersona','municipios'));
+	}
+
+	public function update()
+	{
+		if(Request::ajax())
+		{
+
+			$usuario = User::find(Input::get('id_usuario'));
+
+			$persona = Persona::where('users_id','=', Input::get('id_usuario'))->first();
+
+			$persona->nombre = Input::get('nombre');
+
+			$persona->apellido_p = Input::get('apellido_p');
+
+			$persona->apellido_m = Input::get('apellido_m');
+
+			$persona->save();
+
+			if (Input::has('password'))
+			{
+			    $usuario->password = Hash::make(Input::get('password'));
+
+			    $usuario->save();
+			}
+
+			return Response::json(true);
+		}
+	}
+
+	public function updateDireccion()
+	{
+		$persona = Persona::where('users_id','=', Input::get('id_usuario'))->first();
+
+		$persona->ciudad = Input::get('ciudad');
+
+		$persona->calle = Input::get('calle');
+
+		$persona->numero_ext = Input::get('numero_ext');
+
+		$persona->numero_int = Input::get('numero_int');
+
+		$persona->telefono = Input::get('telefono');
+
+		$persona->codigo_postal = Input::get('codigo_postal');
+
+		$persona->municipio_id = Input::get('municipio');
+
+		$persona->status = 1; // cambiamos el status a 1
+
+		if($persona->save())
+		{
+			return Redirect::to('/cliente/perfil/editar-direccion');
+		}
+	}
 
 	/**
 	 * Remove the specified resource from storage.

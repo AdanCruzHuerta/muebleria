@@ -19,11 +19,6 @@ class CategoriaController extends \BaseController {
         $this->messages = Config::get('constants.DATA_MESSAGES');
     }
 
-	/**
-	 * Mostrar categorias que pertenecen a la raiz
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
         $administrador = $this->administrador;
@@ -38,11 +33,6 @@ class CategoriaController extends \BaseController {
 
 	}
 
-    /**
-     * Mostrar categorias que pertenecen a una categoria
-     *
-     * @return Response
-     */
     public function getCategorias($nombre)
     {
         $administrador = $this->administrador;
@@ -66,11 +56,6 @@ class CategoriaController extends \BaseController {
         return View::make('administrador.productosCategorias', compact('administrador','categoriaActual','articulos','new','mensajes','proveedores'));
     }
 
-	/**
-	 * Guardar categorias del sistema
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
         $id = Input::get('categoria_id_padre');
@@ -145,11 +130,6 @@ class CategoriaController extends \BaseController {
         endif;
 	}
 
-	/**
-	 *  Renombrar categorias
-	 *
-	 * @return Response
-	 */
 	public function update()
 	{
 		$categoria = Categoria::find(Input::get('id'));
@@ -169,11 +149,6 @@ class CategoriaController extends \BaseController {
         endif;
     }
 
-	/**
-	 * Da de baja una categoria de seccion
-	 *
-	 * @return Response
-	 */
 	public function destroy()
 	{
         $delete = DB::table('categorias_has_categorias')

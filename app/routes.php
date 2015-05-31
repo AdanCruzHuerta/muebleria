@@ -250,12 +250,27 @@ Route::group(['before'=>'auth'], function(){
 
     Route::post('/administrador/productos/articulos/create','ArticuloController@store');
 
+    Route::post('/administrador/productos/articulos/update', 'ArticuloController@update');
+
+    Route::post('/administrador/productos/getDataArticle', function(){
+
+		if (Request::ajax())
+		{
+		    $articulo = Helper::getDetalleArticulo(Input::get('id'));
+
+		    return Response::json($articulo);
+		}
+    });
+
 	/*
 	 *  Ruta de Logout
 	 */
 	
-	Route::get('/administrador/logout','LoginController@destroy');
+	Route::get('/administrador/logout','LoginController@destroy');	
 
+});
+
+Route::group(['before'=>'auth-cliente'], function(){
 
 	/*
 	|--------------------------------------------------------------------------
@@ -263,13 +278,15 @@ Route::group(['before'=>'auth'], function(){
 	|--------------------------------------------------------------------------
 	*/
 	
+	Route::get('/cliente/perfil', 'ClienteController@showDataCliente');
 
-	/*
-	|--------------------------------------------------------------------------
-	| 		Rutas de Empleado
-	|--------------------------------------------------------------------------
-	*/
-	
+	Route::get('/cliente/perfil/editar-cuenta', 'ClienteController@edit');
+
+	Route::get('/cliente/perfil/editar-direccion', 'ClienteController@editAdress');
+
+	Route::post('/cliente/perfil/save', 'ClienteController@update');
+
+	Route::post('/cliente/perfil/save-direccion', 'ClienteController@updateDireccion');
 
 });
 

@@ -2,7 +2,22 @@
 
 @section('contenido')
 
-<style></style>
+<style>
+	.completo{
+		background: #46A546;
+		padding: 3px;
+		border-radius: 3px;
+		color:#fff;
+		font-weight: bold;
+	}
+	.incompleto{
+		background: #C43C35;
+		padding: 3px;
+		border-radius: 3px;
+		color:#fff;
+		font-weight: bold;
+	}
+</style>
 
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -44,7 +59,9 @@
 							<td>
 								<center>
 									<label>Estatus</label><br>
-										@if($cliente->status == 0){{ 'Sin completar' }} @else  {{ 'Completado' }}  @endif
+										<span @if($cliente->status == 0) {{ 'class="incompleto"' }} @else {{ 'class="completo"' }} @endif>
+											@if($cliente->status == 0){{ 'Incompleto' }} @else  {{ 'Completo' }}  @endif	
+										</span>
 								</center>
 							</td>
 						</tr>
@@ -72,7 +89,7 @@
 							<td>
 								<center>
 									<label>Municipio</label><br>
-									{{{ $cliente->estado or '-' }}}
+									{{{ $cliente->municipio or '-' }}}
 								</center>
 							</td>
 							<td>

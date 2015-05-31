@@ -4,7 +4,7 @@ class ArticuloController extends \BaseController {
 
 	public function __construct()
 	{
-		$this->beforeFilter('csrf', array('on' => 'post'));
+		$this->beforeFilter('csrf', ['on' => 'post']);
 
 		$this->beforeFilter('@getAdmin', ['only' => ['index']]);
 
@@ -21,27 +21,19 @@ class ArticuloController extends \BaseController {
 		$this->messages = COnfig::get('constants.DATA_MESSAGES');
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+
 	public function index()
 	{
 		$administrador = $this->administrador;
 
 		$mensajes = $this->messages;
 
-		$articulos = DB::table('articulos')->paginate(9);
-
+		$articulos = DB::table('articulos')->paginate(6);
+		
 		return View::make('administrador.productosArticulos', compact('administrador','articulos','mensajes'));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+
 	public function store()
 	{
 
@@ -109,13 +101,6 @@ class ArticuloController extends \BaseController {
 		}
 	}
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  string  $name
-	 * @return Response
-	 */
 	public function show($name)
 	{
         $articulo = Helper::getArticulo($name);
@@ -123,37 +108,11 @@ class ArticuloController extends \BaseController {
         return View::make('tienda.producto', compact('articulo'));
 	}
 
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
+	public function update()
 	{
-		//
+		
 	}
 
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
 		//
