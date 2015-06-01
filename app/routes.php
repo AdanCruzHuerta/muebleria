@@ -117,12 +117,6 @@ Route::get('/salir', function(){
 
 Route::post('/cuenta/changePassword', 'userController@changePassword');
 
-Route::get('/carrito', function(){
-	
-	return View::make('tienda.carrito');
-
-});
-
 Route::post('/registrar-usuario', 'userController@store');
 
 Route::get('/administrador', 'LoginController@Administrador');
@@ -291,6 +285,10 @@ Route::group(['before'=>'auth-cliente'], function(){
 	Route::post('/cliente/perfil/save-direccion', 'ClienteController@updateDireccion');
 
 	Route::post('/cliente/addCart', 'CarritoController@store');
+
+	Route::post('/cliente/RemoveItemCart','CarritoController@destroy');
+
+	Route::get('/carrito', 'CarritoController@index');
 
 });
 

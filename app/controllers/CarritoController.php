@@ -15,7 +15,9 @@ class CarritoController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$articulos = Repositoriocarrito::getArticulosCliente(Session::get('cliente'));
+
+		return View::make('tienda.carrito', compact('articulos'));
 	}
 
 
@@ -37,7 +39,20 @@ class CarritoController extends \BaseController {
 	 */
 	public function store()
 	{
-		return Input::all();
+		$carrito = new Carrito;
+
+		$carrito->personas_id = Input::get('user_id');
+
+		$carrito->articulos_id = Input::get('articulo_id');
+
+		$carrito->importe = Input::get('importe');
+
+		if($carrito->save())
+		{
+			return Redirect::to('/carrito');
+		}
+
+		return Redirect::back()->with('error', true);
 	}
 
 
@@ -76,16 +91,13 @@ class CarritoController extends \BaseController {
 		//
 	}
 
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+		$articulo = Carrito::find(Input::get('id_carrito'));
+
+		$articulo->delete();
+
+		return Redirect::to('/carrito');
 	}
 
 
