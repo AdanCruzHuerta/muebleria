@@ -28,7 +28,7 @@
 
     ->where('users.id', '=', Auth::user()->id )
 
-    ->select('users.id','users.email','users.photo_user','personas.nombre', 'personas.apellido_p',
+    ->select('users.id','users.email','users.photo_user','personas.id as persona_id','personas.nombre', 'personas.apellido_p',
 
              'personas.apellido_m','personas.ciudad','personas.calle','personas.numero_ext',
 

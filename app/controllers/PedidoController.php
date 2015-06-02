@@ -2,6 +2,11 @@
 
 class PedidoController extends \BaseController {
 
+	public function __construct()
+	{	
+		$this->beforeFilter('csrf', array('on' => 'post'));
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -31,7 +36,25 @@ class PedidoController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$pedido = new Pedido;
+
+		$pedido->importe_total = Input::get('importe-total');
+
+		$pedido->status_pedidos_id = 5;
+
+		$pedido->save();
+
+		$carritos = Repositoriocarrito::getArticulosClienteCarrito(Session::get('cliente'));
+
+		foreach($carritos as $carrito)
+		{
+			$carrito->pedidos_id = $pedido->id;
+
+			$carrito->save();
+		}
+
+		return View::make('tienda.pago');
+
 	}
 
 

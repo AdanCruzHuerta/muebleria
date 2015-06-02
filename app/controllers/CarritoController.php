@@ -20,18 +20,6 @@ class CarritoController extends \BaseController {
 		return View::make('tienda.carrito', compact('articulos'));
 	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -55,40 +43,30 @@ class CarritoController extends \BaseController {
 		return Redirect::back()->with('error', true);
 	}
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+	public function update()
 	{
-		//
+		if(Request::ajax())
+		{
+			$articulo = Carrito::find(Input::get('id'));
+
+			$articulo->cantidad = Input::get('cantidad');
+
+			$articulo->importe = Input::get('importe');
+
+			$articulo->save();
+
+			return Response::json(true);
+		}
 	}
 
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
+	public function statusUser()
 	{
-		//
-	}
+		if(Request::ajax())
+		{
+			$cliente = Persona::find(Input::get('id'));
 
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
+			return $cliente->status;
+		}
 	}
 
 	public function destroy()

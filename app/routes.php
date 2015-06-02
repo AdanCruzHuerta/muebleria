@@ -290,6 +290,11 @@ Route::group(['before'=>'auth-cliente'], function(){
 
 	Route::get('/carrito', 'CarritoController@index');
 
+	Route::post('/carrito/changeQuantity', 'CarritoController@update');
+
+	Route::post('/carrito/createPedido', 'PedidoController@store');
+
+	Route::post('/carrito/get-status-user', 'CarritoController@statusUser');
 });
 
 /*

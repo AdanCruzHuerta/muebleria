@@ -1,7 +1,8 @@
 @extends('templates.layout_tienda')
 
 @section('contenido')
-<style>.envio{color: red}.total{font-weight: bold; font-size: 18px;} .cantidad{width: 120px}</style>
+<meta name="_token" content="{{ csrf_token() }}"/>
+<style>.envio{color: red}.total{font-weight: bold; font-size: 18px;} .cantidad{width: 120px}#completa-perfil{display: none;}</style>
 
 	<div class="container">
 		<div class="row">
@@ -40,13 +41,15 @@
   									@foreach($articulos as $articulo)
   									<tr>
   										<td>{{ $articulo->nombre }}</td>
-  										<td>{{ "$".$articulo->importe.".00" }}</td>
+  										<td>{{ "$".$articulo->precio.".00" }}</td>
   										<td>
   											<div class="cantidad">
-  												<input type="text" class="form-control input-cantidad" type="number" min="1" max="5" data-id="{{ $articulo->id }}" data-precio="{{ $articulo->importe }}"  value="{{ $articulo->cantidad }}" readonly>
+  												<input type="text" class="form-control input-cantidad" type="number" min="1" max="5" data-id="{{ $articulo->id }}" data-precio="{{ $articulo->precio }}"  value="{{ $articulo->cantidad }}" readonly>
   											</div>
   										</td>
-  										<td> <span>$</span><span>{{ $articulo->importe }}</span><span>.00</span></td>
+  										<td> 
+  											<b><span>$</span><span class="import">{{ $articulo->importe }}</span><span>.00</span></b>
+  										</td>
   										<td>
   											{{ Form::open(['url'=>'/cliente/RemoveItemCart']) }}
 												<input type="hidden" name="id_carrito" value="{{ $articulo->id }}">
@@ -64,7 +67,7 @@
 									<table class="table">
 										<tr>
 											<td>Subtotal</td>
-											<td id="subtotal"> $0.00</td>
+											<td><span>$</span><span id="subtotal">0</span><span>.00</span></td>
 										</tr>
 										
 										<tr>
@@ -73,17 +76,23 @@
 										</tr>
 										<tr>
 											<td class="total">Total</td>
-											<td id="total" class="total">$0.00</td>
+											<td class="total"><span>$</span><span id="total">0</span><span>.00</span></td>
 										</tr>
 									</table>
 									<center>
-										<a href="" class="btn btn-success">Realizar Compra</a>
+										{{ Form::open(['url'=>'/carrito/createPedido','id'=>'form-crearPedido']) }}
+											<button id="crear-pedido" class="btn btn-success" type="button">Realizar Compra</button>
+											<input type="hidden" id="importe-total" name="importe-total">
+										{{ Form::close() }}
+										
+									</center><br>
+								<div id="completa-perfil" class="alert alert-danger">
+									<center><p>Para poder realizar una compra es necesario completar tu informacion personal.</p>
+									<a href="/cliente/perfil/editar-direccion/" class="btn btn-default btn-block"><i class="fa fa-user"></i> Ir a perfil</a>
 									</center>
+								</div>
 							</section>
-
 				  			@endif
-
-
 				  		</div>
 				  	</div>
 				</div>
@@ -99,7 +108,11 @@
 
 		$('.input-cantidad').bootstrapNumber();
 
-		$('table').delegate('span','click', function(){
+		$('#subtotal').html(subtotal());
+		$('#total').html(subtotal());
+		$('#importe-total').val(subtotal());
+
+		$('table').delegate('.span','click', function(){
 			var padre = $(this).parent();
 			var valor = padre.find('input').val();
 			var id = padre.find('input').attr('data-id');
@@ -107,21 +120,55 @@
 
 			var importe = parseInt(valor) * parseInt(precio);
 
-			padre.parents('tr').find('td:nth-child(4n)>span:nth-child(2n)').text(importe);
+			padre.parents('tr').find('td:nth-child(4n) > b > span:nth-child(2n)').text(importe);
+
+			$('#subtotal').html(subtotal());
+			$('#total').html(subtotal());
+			$('#importe-total').val(subtotal());
 			
 			$.ajax({
 				method: "post",
-				url: '',
+				headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+				url: '/carrito/changeQuantity',
 				data:{ 
 					id: id,
 					cantidad: valor,
-
+					importe: importe
+				},
+				success: function(response) {
+					console.log(response);
 				}
 			});
-
 		});
 
+		$('#crear-pedido').click(function(){
+			$.ajax({
+				method: "post",
+				headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+				url: "/carrito/get-status-user",
+				data: { id: {{Session::get('cliente')->persona_id}} },
+				success: function(response){
+					if(response == 0) {
+						$('#completa-perfil').show();
+						return false;
+					}else {
+						$('#form-crearPedido').submit();
+					}
+				} 	
+			});
+		});
 	});
+
+	function subtotal() {
+		var subtotal = 0;
+		
+		$( ".import" ).each(function( index ) {
+		  	//console.log( index + ": " + $( this ).text() );
+		  	subtotal = parseInt($( this ).text()) + subtotal;
+		});
+
+		return subtotal;
+	}
 
 	</script>
 
