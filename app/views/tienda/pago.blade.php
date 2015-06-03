@@ -20,9 +20,7 @@
 	</style>
 
 	 <script type="text/javascript">
-        // Conekta Public Key
-        Conekta.setPublishableKey('key_Ht2sG1rHwZeErnsV3oxzGzQ');
-        // ...
+         Conekta.setPublishableKey('key_Ht2sG1rHwZeErnsV3oxzGzQ');
     </script>
 
 	<div class="container">
@@ -76,7 +74,7 @@
 					                        	<div class="row">
 					                        		<div class="col-xs-12 col-sm-12 col-lg-6 col-lg-6">
 														<label>CVC</label>
-						                            	<input type="text" size="4" class="form-control" data-conekta="card[cvc]"/>				                        		
+						                            	<input type="text" size="4" class="form-control" data-conekta="card[cvc]" placeholder="* * *"/>				                        		
 						                        	</div>
 						                        	<div class="col-xs-12 col-sm-12 col-lg-6 col-lg-6">
 														<br>
@@ -91,10 +89,10 @@
 					                            </label>
 					                            <div class="row">
 					                            	<div class="col-xs-12 col-sm-12 col-lg-6 col-lg-6">
-					                            		<input type="text" size="2" class="form-control" data-conekta="card[exp_month]"/>
+					                            		<input type="text" size="2" class="form-control" data-conekta="card[exp_month]" placeholder="MM"/>
 					                            	</div>
 					                            	<div class="col-xs-12 col-sm-12 col-lg-6 col-lg-6">
-					                            		<input type="text" size="4" class="form-control" data-conekta="card[exp_year]"/>
+					                            		<input type="text" size="4" class="form-control" data-conekta="card[exp_year]" placeholder="AAAA"/>
 					                            	</div>
 					                            </div>
 					                        </div>
@@ -161,41 +159,48 @@
 			</div>
 		</div>
 	</div>
+
+{{ HTML::script('js/validate.js') }}
+{{ HTML::script('js/messages_es.js') }}
+
 <script type="text/javascript">
 	
 	jQuery(function($) {
-
-		// 	1 Validar formulario de datos y despues proceder a hacer el cargo
                 
                 
-                var conektaSuccessResponseHandler;
-                conektaSuccessResponseHandler = function(token) {
-                    var $form;
-                    $form = $("#card-form");
+            var conektaSuccessResponseHandler;
+            conektaSuccessResponseHandler = function(token) {
+                var $form;
+                $form = $("#card-form");
 
-                    /* Inserta el token_id en la forma para que se envíe al servidor */
-                    $form.append($("<input type=\"hidden\" name=\"conektaTokenId\" />").val(token.id));
+                /* Inserta el token_id en la forma para que se envíe al servidor */
+                $form.append($("<input type=\"hidden\" name=\"conektaTokenId\" />").val(token.id));
 
-                    /* and submit */
-                    $form.get(0).submit();
-                };
+                /* and submit */
+                $form.get(0).submit();
+            };
+            
+            conektaErrorResponseHandler = function(token) {
                 
-                conektaErrorResponseHandler = function(token) {
-                    console.log(token);
-                };
+                console.log(token);
                 
-                $("#card-form").submit(function(event) {
-                    event.preventDefault();
-                    var $form;
-                    $form = $(this);
+                $form.find(".card-errors").text(token.message);
+  				
+  				$form.find("button").prop("disabled", false);
+            };
+            
+            $("#card-form").submit(function(event) {
+                event.preventDefault();
+                var $form;
+                $form = $(this);
 
-                    /* Previene hacer submit más de una vez */
-                    $form.find("button").prop("disabled", true);
-                    Conekta.token.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
-                    /* Previene que la información de la forma sea enviada al servidor */
-                    return false;
-                });
-
+                /* Previene hacer submit más de una vez */
+                $form.find("button").prop("disabled", true);
+                Conekta.token.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
+                /* Previene que la información de la forma sea enviada al servidor */
+                return false;
             });
+
+        });
 </script>	
 @stop

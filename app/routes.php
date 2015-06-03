@@ -301,6 +301,8 @@ Route::group(['before'=>'auth-cliente'], function(){
 		return View::make('tienda.pago');
 	
 	});
+
+	Route::post('/process/payment', 'ProcessController@payment');
 });
 
 /*

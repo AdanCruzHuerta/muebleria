@@ -195,7 +195,7 @@ module.exports = function (grunt) {
         src: 'dist/css/<%= pkg.name %>-theme.css'
       },
       docs: {
-        src: ['docs/assets/css/anchor.css', 'docs/assets/css/src/docs.css']
+        src: ['docs/assets/css/src/docs.css']
       },
       examples: {
         expand: true,
@@ -244,21 +244,9 @@ module.exports = function (grunt) {
       docs: {
         src: [
           'docs/assets/css/src/pygments-manni.css',
-          'docs/assets/css/src/anchor.css',
           'docs/assets/css/src/docs.css'
-
         ],
         dest: 'docs/assets/css/docs.min.css'
-      }
-    },
-
-    usebanner: {
-      options: {
-        position: 'top',
-        banner: '<%= banner %>'
-      },
-      files: {
-        src: 'dist/css/*.css'
       }
     },
 
@@ -487,7 +475,7 @@ module.exports = function (grunt) {
 
   // CSS distribution task.
   grunt.registerTask('less-compile', ['less:compileCore', 'less:compileTheme']);
-  grunt.registerTask('dist-css', ['less-compile', 'autoprefixer:core', 'autoprefixer:theme', 'usebanner', 'csscomb:dist', 'cssmin:minifyCore', 'cssmin:minifyTheme']);
+  grunt.registerTask('dist-css', ['less-compile', 'autoprefixer:core', 'autoprefixer:theme', 'csscomb:dist', 'cssmin:minifyCore', 'cssmin:minifyTheme']);
 
   // Full distribution task.
   grunt.registerTask('dist', ['clean:dist', 'dist-css', 'copy:fonts', 'dist-js']);
