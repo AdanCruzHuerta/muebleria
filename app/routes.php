@@ -295,6 +295,12 @@ Route::group(['before'=>'auth-cliente'], function(){
 	Route::post('/carrito/createPedido', 'PedidoController@store');
 
 	Route::post('/carrito/get-status-user', 'CarritoController@statusUser');
+
+	Route::get('/carrito/pago', function(){
+
+		return View::make('tienda.pago');
+	
+	});
 });
 
 /*

@@ -73,7 +73,7 @@
 												<li><a href="/salir"><i class="fa fa-sign-out"></i>Salir</a></li>
 											</ul>
 
-											<a href="/carrito" id="carrito_compra" type="button" class="btn btn-default btn-lg pull-right"><i class="fa fa-shopping-cart"></i></a>
+											<a href="/carrito" id="carrito_compra" type="button" class="btn btn-default btn-lg pull-right" title="Mi carrito"><i class="fa fa-shopping-cart"></i></a>
 
 									@else
 
@@ -176,65 +176,6 @@
 					</div>
 				</footer>
 			</div>
-		
-		
-		{{-- <div class="modal fade" id="modal-carrito" tabindex="-1" role="dialog" aria-labelleby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title"><i class="fa fa-shopping-cart"></i>&nbsp;Carrito de compras</h4>
-					</div>
-					<form action="#" method="post">
-					<div class="modal-body">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th width="120px">Imagen</th>
-									<th>Producto</th>
-									<th>Cantidad</th>
-									<th>Precio</th>
-									<th>Opciones</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr >
-									<td >
-										<img class="img-responsive" src="http://placehold.it/620x296/cccccc/ffffff">
-									</td>
-									<td>Nombre</td>
-									<td><input type="number" class="form-control cantidad" value="1" min="1" max="5"></td>
-									<td>$500.00</td>
-									<td>
-										<button type="button" class="btn btn-link">
-											<i class="fa fa-trash fa-lg"></i>
-										</button>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<img class="img-responsive" src="http://placehold.it/620x296/cccccc/ffffff">
-									</td>
-									<td>Nombre</td>
-									<td><input type="number" class="form-control cantidad" value="1" min="1" max="5"></td>
-									<td>$500.00</td>
-									<td>
-										<button type="button" class="btn btn-link">
-											<i class="fa fa-trash fa-lg"></i>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="modal-footer">
-						<input type="submit" class="btn btn-primary" value="Iniciar">
-					</div>
-					</form>
-				</div>
-			</div>
-
-		</div> --}}
 
 		{{HTML::script('js/validate.js')}}
 		{{HTML::script('js/messages_es.js')}}
@@ -258,6 +199,8 @@
 				$('.opciones_cliente').tooltip();
 				
 				$('.dropdown-toggle').dropdown();
+
+				$('#carrito_compra').tooltip();
 			});
 		</script>
 	</body>

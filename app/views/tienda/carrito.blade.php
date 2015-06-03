@@ -160,10 +160,9 @@
 	});
 
 	function subtotal() {
-		var subtotal = 0;
 		
+		var subtotal = 0;
 		$( ".import" ).each(function( index ) {
-		  	//console.log( index + ": " + $( this ).text() );
 		  	subtotal = parseInt($( this ).text()) + subtotal;
 		});
 

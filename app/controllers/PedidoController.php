@@ -36,6 +36,7 @@ class PedidoController extends \BaseController {
 	 */
 	public function store()
 	{
+
 		$pedido = new Pedido;
 
 		$pedido->importe_total = Input::get('importe-total');
@@ -48,9 +49,9 @@ class PedidoController extends \BaseController {
 
 		foreach($carritos as $carrito)
 		{
-			$carrito->pedidos_id = $pedido->id;
-
-			$carrito->save();
+			DB::table('personas_has_articulos')
+            
+            	->update(array('pedidos_id' => $pedido->id));
 		}
 
 		return View::make('tienda.pago');

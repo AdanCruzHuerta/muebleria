@@ -2,14 +2,14 @@
 
 class Repositoriocarrito {
 
-	static function getArticulosCliente($id_persona)
+	static function getArticulosCliente($cliente)
 	{
 
 		$articulos = DB::table('personas_has_articulos as p_a')
 
 			->join('articulos as a', 'p_a.articulos_id', '=', 'a.id')
 
-       		->where('p_a.personas_id', '=', $id_persona->id)
+       		->where('p_a.personas_id', '=', $cliente->id)
 
        		->where('p_a.status', '=', 0 ) // 0 = pendientes
 

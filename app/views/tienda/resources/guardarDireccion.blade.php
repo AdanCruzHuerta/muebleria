@@ -38,9 +38,9 @@
 	    		<select name="municipio" id="municipio" class="form-control" class="form-control">
 	    			<option value="">Selecciona un municipio</option>
 	    			
-	    		@foreach($municipios as $municipio)
+	    		{{-- @foreach($municipios as $municipio)
 					<option value="{{ $municipio->id }}">{{ $municipio->nombre }}</option>
-	    		@endforeach
+	    		@endforeach--}}
 	    		</select>
 	  		</div>
 
@@ -114,8 +114,8 @@
 				ciudad: 		{ required: true, minlength: 3 },
 				calle: 			{ required: true, minlength: 3 },
 				numero_ext: 	{ required: true },
-				telefono: 		{ required: true, minlength: 3 },
-				codigo_postal: 	{ required: true, minlength: 5, maxlength: 5 },
+				telefono: 		{ required: true, minlength: 3, digits:true },
+				codigo_postal: 	{ required: true, minlength: 5, maxlength: 5, digits:true },
 				estado: 		{ required: true },
 				municipio: 		{ required: true }
 			},
