@@ -10,6 +10,8 @@ class ProcessController extends \BaseController {
 	
 	public function payment()
 	{
+		$importe = Input::get('importe') * 100;
+
 		Conekta::setApiKey("key_iUTmeiqNoshTBUGSMnri2Q");
 
 		try 
@@ -17,11 +19,11 @@ class ProcessController extends \BaseController {
 
             $charge = Conekta_Charge::create([
             
-            "amount" => 400000,
+            "amount" => $importe,
             
             "currency" => "MXN",
             
-            "description" => "Primer cobro conekta",
+            "description" => "Mueblería Ureña",
             
             "reference_id"=> "orden_de_id_interno",
             
@@ -32,13 +34,35 @@ class ProcessController extends \BaseController {
         } catch (Conekta_Error $e) 
         {
         	//return ['message'=>$e->getMessage()];
+
+        	$mensaje = $e->getMessage();
            
-            return View::make('tienda.respuesta',['message'=>$e->getMessage()]);
+            return View::make('tienda.respuesta', compact('mensaje'));
         }
         
         //return ['message' => $$charge->status];
+
+        $pedido = Pedido::find(Input::get('pedido'));
+
+        $pedido->status_pedidos_id = 1;
+
+        $pedido->save();
+
+        $carritos = Repositoriocarrito::getArticulosClienteCarrito(Session::get('cliente'));
+
+        foreach($carritos as $carrito)
+        {
+            DB::table('personas_has_articulos')
+            
+                ->update(array(
+
+                    'status'=> 1
+                ));
+        }
+
+        $mensaje = $charge->status;
         
-        return View::make('tienda.respuesta', ['message'=>$charge->status]);
+        return View::make('tienda.respuesta', compact('mensaje'));
 	}
 
 

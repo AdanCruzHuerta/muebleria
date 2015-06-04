@@ -5,22 +5,24 @@
 	{{ HTML::script('https://conektaapi.s3.amazonaws.com/v0.3.0/js/conekta.js') }}
 
 	<style>
-	.forma-pago{
-		font-size: 20px;
-	}
-	.cvc{
-		font-size: 33px;
-	}
-	.opcion-pago{
-		font-size: 90px;
-	}
-	.proximo{
-		margin-top: 20px;
-	}
+		.forma-pago{
+			font-size: 20px;
+		}
+		.cvc{
+			font-size: 33px;
+		}
+		.opcion-pago{
+			font-size: 90px;
+		}
+		.proximo{
+			margin-top: 20px;
+		}
 	</style>
 
 	 <script type="text/javascript">
+         
          Conekta.setPublishableKey('key_Ht2sG1rHwZeErnsV3oxzGzQ');
+    
     </script>
 
 	<div class="container">
@@ -37,7 +39,7 @@
 
 				  			<div class="row">
 				  				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				  					<h4>Monto a pagar: $4000.00</h4>
+				  					<h4>Monto a pagar: ${{ $importe }}.00</h4>
 				  				</div>
 				  			</div>
 							<br>
@@ -96,7 +98,8 @@
 					                            	</div>
 					                            </div>
 					                        </div>
-					                        
+					                        <input type="hidden" name="pedido" value="{{ $pedido }}">
+					                        <input type="hidden" name="importe" value="{{ $importe }}">
 					                        <button id="processPayment" class="btn btn-success btn-block" type="submit">Procesar pago</button>
 											
 											{{ Form::close() }}

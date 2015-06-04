@@ -2,6 +2,8 @@
 
 @section('contenido_perfil')
 
+<meta name="_token" content="{{ csrf_token() }}"/>
+
 <style type="text/css">#cambiar-password{display: none;}</style>
 <div id="alerta"></div>
 {{ Form::open(['id'=>'form-user-perfil']) }}
@@ -95,6 +97,7 @@
 			submitHandler: function() {
 				$.ajax({
 					method: 'post',
+					headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
 					url: "/cliente/perfil/save",
 					data: $('#form-user-perfil').serialize(),
 					success: function(response)

@@ -6,29 +6,7 @@ class PedidoController extends \BaseController {
 	{	
 		$this->beforeFilter('csrf', array('on' => 'post'));
 	}
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-
+	
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -51,60 +29,18 @@ class PedidoController extends \BaseController {
 		{
 			DB::table('personas_has_articulos')
             
-            	->update(array('pedidos_id' => $pedido->id));
+            	->update(array(
+
+            		'pedidos_id'=> $pedido->id
+            	));
 		}
 
-		return View::make('tienda.pago');
+		$pedido = $pedido->id;
+
+		$importe = Input::get('importe-total');
+
+		return View::make('tienda.pago', compact('pedido','importe'));
 
 	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
 
 }
