@@ -1,7 +1,7 @@
 @extends('templates.layout_tienda')
 
 @section('contenido')
-<style>.article{width: 245px !important;height: 178px !important;}</style>
+<style>.show-article:hover{box-shadow: 0px 0px 20px #666666;}.article{width: 245px !important;height: 178px !important;}</style>
 	<section>
 		<div class="container">
 			<div class="row">
@@ -96,7 +96,7 @@
 							<div class="row">
 							@foreach($articulos as $articulo)
 								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-									<div class="thumbnail">
+									<div class="thumbnail show-article">
 										<img class="article" src="{{ $articulo->ruta_corta }}" alt="Muebles de Mueblería Ureña"><br>
 										<div class="label label-info"><i class="fa fa-tag"></i> Nuevo!</div>
 

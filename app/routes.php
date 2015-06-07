@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | 		Application Routes Muebleria Ureña
@@ -33,6 +32,27 @@ Route::get('/productos', function(){
 
 });
 
+Route::get('/productos/filter', function() {
+
+	$rangoPrecios = explode(',', Input::get('rango-precios'));
+
+	$rango = Input::get('rango-precios');
+
+	$categorias = Helper::getCategoriasRaiz();
+
+	$slug = false;
+
+	$articulos = Helper::getArticulosForPrice($rangoPrecios);
+
+	if( $articulos->isEmpty() )
+	{
+		return Redirect::to('/productos');
+	}
+
+	return View::make('tienda.productos', compact('slug','categorias','articulos','rango'));
+
+});
+
 Route::get('/contacto', function(){
 
 	return View::make('tienda.contacto');
@@ -43,42 +63,6 @@ Route::get('/tienda', function(){
 
 	return View::make('tienda.tienda');
 
-});
-
-
-Route::get('/productos/filter/', function(){
-
-		$rangoPrecios = explode(',', Input::get('rango-precios'));
-
-		$rango = Input::get('rango-precios');
-
-		$categorias = Helper::getCategoriasRaiz();
-
-		$slug = Input::get('categoria');
-
-		if (! Input::has('categoria'))
-		{
-			$slug = false;
-
-		    $articulos = Helper::getArticulosForPrice($rangoPrecios);
-
-		    if($articulos->isEmpty())
-		    {
-		    	return Redirect::to('/productos');
-		    }
-
-		    return View::make('tienda.productos', compact('slug','categorias','articulos','rango'));
-		}
-
-		$articulos = Helper::getArticulosForPriceCategory($rangoPrecios, $slug);
-
-		if($articulos->isEmpty())
-		{
-			return Redirect::to('/productos');
-		}
-
-		return View::make('tienda.productos', compact('slug','categorias','articulos','rango'));	
-		
 });
 
 Route::get('/productos/{name}', 'ArticuloController@show');
@@ -95,6 +79,27 @@ Route::get('/productos/categoria/{name}', function($name){
 
     return View::make('tienda.productos', compact('slug','categorias','articulos', 'rango'));
 
+});
+
+Route::get('/productos/categoria/{name}/filter/', function($name){
+
+		$rangoPrecios = explode(',', Input::get('rango-precios'));
+
+		$rango = Input::get('rango-precios');
+
+		$categorias = Helper::getCategoriasRaiz();
+
+		$slug = $name;
+
+		$articulos = Helper::getArticulosForPriceCategory($rangoPrecios, $slug);
+
+		if($articulos->isEmpty())
+		{
+			return Redirect::to('/productos');
+		}
+
+		return View::make('tienda.productos', compact('slug','categorias','articulos','rango'));
+		
 });
 
 Route::get('/producto/nuevo/{name}','ArticuloController@show');

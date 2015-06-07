@@ -41,7 +41,7 @@
   									@foreach($articulos as $articulo)
   									<tr>
   										<td>{{ $articulo->nombre }}</td>
-  										<td>{{ "$".$articulo->precio.".00" }}</td>
+  										<td>{{ "$".number_format($articulo->precio).".00" }}</td>
   										<td>
   											<div class="cantidad">
   												<input type="text" class="form-control input-cantidad" type="number" min="1" max="5" data-id="{{ $articulo->id }}" data-precio="{{ $articulo->precio }}"  value="{{ $articulo->cantidad }}" readonly>

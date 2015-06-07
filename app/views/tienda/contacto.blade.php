@@ -52,7 +52,7 @@
 						<address>
 							<strong>Sucursal Pino Suárez (Matriz)</strong><br>
 							Ave. Pino Suárez #300, Muebles Ureña<br>
-							<abbr title="Phone">P:</abbr> (123) 456-7890
+							<i class="fa fa-phone"></i> (123) 456-7890
 						</address>
 						<div class="thumbnail">
 							<iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.6710012689264!2d-103.73017200000001!3d19.253165000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8425454cbc43eb0b%3A0x983d0c0c851e9232!2zTXVlYmxlcsOtYSBVcmXDsWE!5e0!3m2!1ses!2smx!4v1417107519636" ></iframe><br /><small>Ver <a href="https://maps.google.com.mx/maps?f=q&amp;source=embed&amp;hl=es-419&amp;geocode=&amp;q=pedro+a+galvan+226&amp;aq=&amp;sll=19.234442,-103.720403&amp;sspn=0.001902,0.00327&amp;gl=mx&amp;ie=UTF8&amp;hq=&amp;hnear=Pedro+A+Galv%C3%A1n+226,+Colima&amp;t=m&amp;z=14&amp;ll=19.234632,-103.720239" style="color:#0000FF;text-align:left">El Clasico de Clasicos</a> en un mapa ampliado</small>
@@ -62,14 +62,14 @@
 						<address>
 							<strong>Sucursal Calzada Pedro A. Galván</strong><br>
 							Calzada Pedro A. Galván #226 Sur<br>
-							<abbr title="Phone">P:</abbr> (123) 456-7890
+							<i class="fa fa-phone"></i> (123) 456-7890
 						</address>
 						<div class="thumbnail">
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.0963459523487!2d-103.72023929999999!3d19.2346324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x84255007009d27c5%3A0xd51de61cf6f5c27a!2sPedro+A+Galv%C3%A1n+226%2C+Centro%2C+28000+Colima%2C+COL!5e0!3m2!1ses!2smx!4v1419348076833" width="100%" height="300" frameborder="0" style="border:0"></iframe><br /><small>Ver <a href="https://maps.google.com.mx/maps?f=q&amp;source=embed&amp;hl=es-419&amp;geocode=&amp;q=pedro+a+galvan+226&amp;aq=&amp;sll=19.234442,-103.720403&amp;sspn=0.001902,0.00327&amp;gl=mx&amp;ie=UTF8&amp;hq=&amp;hnear=Pedro+A+Galv%C3%A1n+226,+Colima&amp;t=m&amp;z=14&amp;ll=19.234632,-103.720239" style="color:#0000FF;text-align:left">El Clasico de Clasicos</a> en un mapa ampliado</small>
 						</div>
 					</div>
 				</div>
-				<div class="cabecera"><div class="text-cabecera">Siguenos en</div></div>
+				<div class="cabecera"><div class="text-cabecera">Síguenos en</div></div>
 				<div class="btn-social">
 					<center>
 						<a href="https://www.facebook.com/urenamuebles?fref=ts" class="icon-button facebook sombra" target="_blank">

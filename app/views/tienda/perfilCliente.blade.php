@@ -35,13 +35,13 @@
 									<li class="list-group-item @if(Request::path()=='cliente/perfil/editar-cuenta') {{ 'active' }} @endif">
 										<i class="fa fa-user"></i>
 										<a href="/cliente/perfil/editar-cuenta/">
-											<label class="item-perfil">EDITAR CUENTA</label>
+											<label class="item-perfil">Editar cuenta</label>
 										</a>
 									</li>
 									<li class="list-group-item @if(Request::path()=='cliente/perfil/editar-direccion') {{ 'active' }} @endif">
 										<i class="fa fa-map-marker"></i>
 										<a href="/cliente/perfil/editar-direccion/">
-											<label class="item-perfil">EDITAR DIRECCIÓN</label>
+											<label class="item-perfil">Editar dirección</label>
 										</a> 
 									</li>
 									<li class="list-group-item">

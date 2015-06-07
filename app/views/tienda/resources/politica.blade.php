@@ -1,4 +1,4 @@
-{{-- 	<div class="row">
+ 	{{-- <div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="cabecera">
 					<div class="text-cabecera">Preguntas Frecuentes</div>
@@ -91,11 +91,11 @@
 					</div>
 				</div>
 			</div>
-		</div>
+	</div> --}}
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="cabecera">
-					<div class="text-cabecera">Politicas de Privacidad</div>
+					<div class="text-cabecera">Política de privacidad</div>
 				</div><br>
 				<div class="panel-group col-xs-12 col-sm-12 col-md-12 col-lg-12" id="accordion" role="tablist" aria-multiselectable="true">
 					<div class="panel panel-default">
@@ -103,7 +103,7 @@
 							<h4 class="panel-title">
 								<i class="fa fa-file-text-o pp"></i>
 								<a data-toggle="collapse" data-parent="#accordion" href="#collapsePP" aria-expanded="false" aria-controls="collapseOne">
-									Ver Politicas de Privacidad
+									Leer Política de Privacidad
 								</a>
 							</h4>
 						</div>
@@ -130,13 +130,13 @@
 								<h4>¿Cómo recolectamos la información?</h4>
 								<p>La recolección de datos personales podrá efectuarse de las siguientes maneras
 										<li>Cuando se comunica vía telefónica con nosotros.</li>
-										<li>Mediante el suministro voluntario de información a través de las ventanas de dialogo habilitadas en el sitio web www.muebleria-urena.com.mx.</li>
+										<li>Mediante el suministro voluntario de información a través de las ventanas de diálogo habilitadas en el sitio web www.muebleria-urena.com.mx.</li>
 										<li>Cuando se comunica con nosotros por medio de correos electrónicos o visita nuestras sucursales.</li>
 										<li>Mediante la utilización del sitio web www.muebleria-urena.com.mx.</li>
 										<li>Mediante la recopilación directa.</li>
 										<li>Mediante fuentes de acceso público.</li>
 								</p>
-								<h4>¿Con que Finalidad recolectamos su información?</h4>
+								<h4>¿Con qué Finalidad recolectamos su información?</h4>
 								<p>
 									<li>Emitir Facturación Correspondiente.</li>
 									<li>Atender requerimientos legales.</li>
@@ -147,9 +147,9 @@
 								</p>
 								<h4>¿Cómo revocar la autorización de datos personales?</h4>
 								<p>Todos sus datos personales son tratados de acuerdo a la Ley vigente del país, pero le notificamos que en cualquier momento usted puede realizar la petición por medio de sus derechos ARCO (Acceder, Rectificar, Cancelar u Oponerse), con la finalidad de que dejemos de hacer uso de sus datos personales, dicho derecho podrá ejercerse al presentarse y hacer la petición de manera personal en el domicilio del presente aviso o a través del correo electrónico: urena75@hotmail.com, dicho formato arco puede descargarlo haciendo clic aquí o solicitándolo al correo anteriormente descrito.</p>
-								<h4>Trasferencia de datos</h4>
+								<h4>Transferencia de datos</h4>
 								<p>
-									Mueblería Ureña podrá trasferir los datos recabados a sus empresas filiales que sean identificadas o asociadas a Mueblería Ureña, al igual a distribuidores autorizados proveedores o con quienes se tenga relación jurídica o comercial, estos terceros poseen las mismas obligaciones y/o responsabilidades de Mueblería Ureña de conformidad a lo presente establecido en este aviso de privacidad. Si usted NO manifiesta su oposición para que sus datos personales sean trasferidos, se entenderá que ha otorgado su consentimiento para realizar dichas trasferencias.
+									Mueblería Ureña podrá transferir los datos recabados a sus empresas filiales que sean identificadas o asociadas a Mueblería Ureña, al igual a distribuidores autorizados proveedores o con quienes se tenga relación jurídica o comercial, estos terceros poseen las mismas obligaciones y/o responsabilidades de Mueblería Ureña de conformidad a lo presente establecido en este aviso de privacidad. Si usted NO manifiesta su oposición para que sus datos personales sean trasferidos, se entenderá que ha otorgado su consentimiento para realizar dichas transferencias.
 								</p>
 								<h4>Cambios en el Aviso de Privacidad</h4>
 								<p>
@@ -161,4 +161,4 @@
 					</div>
 				</div>	
 			</div>
-		</div> --}}
+		</div> 

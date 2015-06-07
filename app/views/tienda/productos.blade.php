@@ -1,22 +1,30 @@
 @extends('templates.layout_tienda')
 
 @section('contenido')
-	<?php 
-		$categoriaActual = explode('/', Request::path());
-		$categoriaActual = end($categoriaActual);
+	<?php
+		if($slug)
+		{
+			$categoriaActual = $slug;	
+		}else {
+			$categoriaActual = explode('/', Request::path());
+			$categoriaActual = end($categoriaActual);
+		}
+
 
 		$precios = explode(',', $rango);
 	?>
 	<section>
-        <style>.article{width: 245px !important;height: 180px !important;}.contenido{color: #A24B2D !important; text-align: justify; font-size: 14px;}.atributos{color: #333333;}.paginacion{background-color: #fff;border: 1px solid #ddd;border-radius: 15px;display: inline-block;padding: 5px 14px;}</style>
+        <style>.show-article:hover{box-shadow: 0px 0px 20px #666666;}.article{width: 245px !important;height: 180px !important;}.contenido{color: #A24B2D !important; text-align: justify; font-size: 14px;}.atributos{color: #333333;}.paginacion{background-color: #fff;border: 1px solid #ddd;border-radius: 15px;display: inline-block;padding: 5px 14px;}</style>
 
 		<div class="container">
 			<br>
 			<div class="row">
+				
 				<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                     <div class="breadcrumb">
-
-                        <b>NUESTRAS CATEGORÍAS</b>
+						<center>
+                        	<b>NUESTRAS CATEGORÍAS</b>
+                        </center>
                         <hr style="border: 1px solid #777777;"/>
 
                         <ul class="nav" id="side-menu">
@@ -27,31 +35,57 @@
                                     </a>
                                 </li>
                             @endforeach
+								<li>
+									<a>
+										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Sillones
+									</a>
+								</li>
+								<li>
+									<a>
+										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Sofás
+									</a>
+								</li>
+								<li>
+									<a>
+										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Salas esquineras
+									</a>
+								</li>
+								<li>
+									<a>
+										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Comedores
+									</a>
+								</li>
+								<li>
+									<a>
+										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Mesas de centro
+									</a>
+								</li>
+								<li>
+									<a>
+										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Salas 3-2-1
+									</a>
+								</li>
                         </ul>
                     </div>
 
                     <div class="breadcrumb">
                     	<center>
-                    		<b>FILTRAR POR PRECIO Y CATEGORIA</b>
+                    		<b>FILTRAR ARTÍCULOS POR PRECIO</b>
                     	</center>
                     	<hr style="border: 1px solid #777777;" />
-                    	{{ Form::open(['id'=>'find','url' => 'productos/filter','method'=>'get']) }}						
+						
+						@if($categoriaActual == 'productos' || $categoriaActual == 'filter')
+						{{ Form::open(['url' => '/productos/filter','method'=>'get']) }}
+						@else
+							<?php $name = $categoriaActual.'/'; ?>
+						{{ Form::open(['url' => '/productos/categoria/'.$name.'filter','method'=>'get']) }}
+						@endif				
 							<div>
 								<b class="pull-left">$ 0</b>
 	                    		<b class="pull-right">$ 10000</b> 
-	                    		<input id="ex2" type="text" class="span2" value="" name="rango-precios" data-slider-min="0" data-slider-max="10000" data-slider-step="100" data-slider-value='@if(!$rango) {{ "[500,10000]" }} @else {{ "[$precios[0],$precios[1]]" }} @endif'/>	                    		
+	                    		<input id="ex2" type="text" class="span2" value="" name="rango-precios" data-slider-min="0" data-slider-max="10000" data-slider-step="100" data-slider-value='@if(!$rango) {{ "[1000,9000]" }} @else {{ "[$precios[0],$precios[1]]" }} @endif'/>	                    		
 							</div><br>
-							@foreach($categorias as $categoria)
-								<div class="radio">
-									<label>
-								    	<input type="radio" name="categoria" value="{{ $categoria->slug }}" @if($slug == $categoria->slug) {{ 'checked' }} @endif>
-								    	<b>{{ ucwords(strtolower($categoria->nombre)) }}</b>
-								  	</label>
-								</div>
-							@endforeach
-                    		<br>
-                    		<div id="busca-categoria"></div>
-                    		<button class="btn btn-default btn-block" type="button" id="find-article"><i class="fa fa-search"></i> Buscar</button>
+                    		<button class="btn btn-default btn-block" type="submit" id="find-article"><i class="fa fa-search"></i> Buscar</button>
                     	{{ Form::close() }}
                     </div>
 				</div>
@@ -60,7 +94,7 @@
 
 		            @foreach($articulos as $articulo)
 		                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-								<div class="thumbnail">
+								<div class="thumbnail show-article">
 									<img class="article" src="{{ $articulo->ruta_corta }}" alt="Muebles de Mueblería Ureña"><br>
 									<div class="label label-info"><i class="fa fa-tag"></i> {{{ isset($articulo->nombre_categoria) ? $articulo->nombre_categoria : 'Nuevo' }}} </div>
 									<div class="caption">
@@ -74,7 +108,7 @@
 	                <div class="row">
 	                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	                        <div class="pull-right">
-	                            {{ $articulos->appends(['rango-precios' => $rango, 'categoria' => $slug])->links() }}
+	                            {{ $articulos->appends(['rango-precios' => $rango])->links() }}
 	                        </div>
 	                    </div>
 	                </div>
@@ -85,23 +119,8 @@
 	</section>
 	<script>
 	$(document).ready(function(){
-		!function(a,b,c){function d(b,c){this.element=b,this.settings=a.extend({},f,c),this._defaults=f,this._name=e,this.init()}var e="metisMenu",f={toggle:!0};d.prototype={init:function(){var b=a(this.element),c=this.settings.toggle;this.isIE()<=9?(b.find("li.active").has("ul").children("ul").collapse("show"),b.find("li").not(".active").has("ul").children("ul").collapse("hide")):(b.find("li.active").has("ul").children("ul").addClass("collapse in"),b.find("li").not(".active").has("ul").children("ul").addClass("collapse")),b.find("li").has("ul").children("a").on("click",function(b){b.preventDefault(),a(this).parent("li").toggleClass("active").children("ul").collapse("toggle"),c&&a(this).parent("li").siblings().removeClass("active").children("ul.in").collapse("hide")})},isIE:function(){for(var a,b=3,d=c.createElement("div"),e=d.getElementsByTagName("i");d.innerHTML="<!--[if gt IE "+ ++b+"]><i></i><![endif]-->",e[0];)return b>4?b:a}},a.fn[e]=function(b){return this.each(function(){a.data(this,"plugin_"+e)||a.data(this,"plugin_"+e,new d(this,b))})}}(jQuery,window,document);
 		
-		$("#ex2").slider({});	
-
-		var formulario = $('#find');
-		var mensaje = '<div class="alert alert-danger"><center>Seleccione una categoría</center></div>';
-
-		$('#find-article').click(function(){
-			var categoria = $('input[name=categoria]:checked', formulario).val();	
-			if(categoria)
-			{
-				formulario.submit();
-			}
-			else{
-				$('#busca-categoria').html(mensaje);
-			}
-		});	
+		$("#ex2").slider({}); 
 	});
 </script>
 @stop

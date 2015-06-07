@@ -32,7 +32,7 @@
 								<li><a href="/">Inicio</a></li>
 								<li><a href="/productos">Productos</a></li>
 								<li><a href="/contacto">Contacto</a></li>
-								<li><a href="/tienda">Tienda en Linea</a></li>
+								<li><a href="/tienda">Tienda en Línea</a></li>
 								@if(Auth::user())
 
 									@if(Auth::user()->roles_id == 1)
@@ -112,7 +112,7 @@
 										<a href="/contacto" class="btn_nav">Contacto</a>
 									</li>
 									<li class="@if($path =='tienda'){{'activo'}} @endif">
-										<a href="/tienda" class="btn_nav">Tienda en Linea</a>
+										<a href="/tienda" class="btn_nav">Tienda en Línea</a>
 									</li>
 								</ul>
 				          	</div>
@@ -167,7 +167,7 @@
 								<div class="text-center">
 									<img src="/img/logos/urena.png" class="hidden-xs logo-urena">
 									<br>
-									<label>Derechos reservados ©2015 Muebleria Ureña</label>
+									<label>Derechos reservados ©2015 Mueblería Ureña</label>
 									<br>
 									<label>Desarrollado por: <a href="http://sharksoft.com.mx" target="_blank">Shark Soft</a></label>
 								</div>
@@ -201,6 +201,10 @@
 				$('.dropdown-toggle').dropdown();
 
 				$('#carrito_compra').tooltip();
+
+				$("body").on("contextmenu",function(){
+			       	return false;
+			    });
 			});
 		</script>
 	</body>
