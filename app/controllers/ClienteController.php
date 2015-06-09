@@ -86,17 +86,38 @@ class ClienteController extends \BaseController {
 
 	public function showDataCliente()
 	{
+		if (Session::has('cliente'))
+		{
+	    	$countCarrito = Repositoriocarrito::countCarrito();
+		
+		}else {
+
+			$countCarrito = 0;
+		
+		}
+
 		$dataCliente = $this->cliente;
 
-		return View::make('tienda.resources.cuentaCliente', compact('dataCliente'));
+		return View::make('tienda.resources.cuentaCliente', compact('dataCliente','countCarrito'));
 	}
 
 
 	public function edit()
 	{
+		if (Session::has('cliente'))
+		{
+
+	    	$countCarrito = Repositoriocarrito::countCarrito();
+		
+		} else {
+
+			$countCarrito = 0;
+
+		}
+
 		$dataCliente = $this->cliente;
 
-		return View::make('tienda.resources.editarCuenta', compact('dataCliente'));
+		return View::make('tienda.resources.editarCuenta', compact('dataCliente','countCarrito'));
 
 
 	}
@@ -108,15 +129,27 @@ class ClienteController extends \BaseController {
 		$estados = Estado::all();
 
 		$municipios = Municipio::all();
+
+		if (Session::has('cliente'))
+		{
+	    	$countCarrito = Repositoriocarrito::countCarrito();
 		
+		} else {
+
+			$countCarrito = 0;
+		
+		}
+
 		if($dataCliente->status == 0)
 		{
-			return View::make('tienda.resources.guardarDireccion', compact('dataCliente','estados','municipios'));
+
+			return View::make('tienda.resources.guardarDireccion', compact('dataCliente','estados','municipios','countCarrito'));
+		
 		}
 
 		$dataPersona = $this->persona;
 
-		return View::make('tienda.resources.editarDireccion', compact('dataCliente','estados','dataPersona','municipios'));
+		return View::make('tienda.resources.editarDireccion', compact('dataCliente','estados','dataPersona','municipios','countCarrito'));
 	}
 
 	public function update()

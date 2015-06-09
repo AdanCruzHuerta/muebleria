@@ -35,4 +35,26 @@ class Repositoriocarrito {
        	return $carrito;
 	}
 
+       static function countCarrito()
+       {
+              $id_persona = Session::get('cliente')->persona_id;
+
+              $count = DB::table('personas as p')
+
+                     ->join('personas_has_articulos as p_a', 'p.id', '=', 'p_a.personas_id')
+
+                     ->join('articulos as a', 'p_a.articulos_id', '=', 'a.id')
+
+                     ->where('p.id', '=', $id_persona)
+
+                     ->where('p_a.status', '=', 0)
+
+                     ->select('p_a.id')
+
+                     ->get();
+
+              $count = count($count);
+
+              return $count; 
+       }
 }

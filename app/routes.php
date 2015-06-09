@@ -15,7 +15,16 @@ Route::get('/', function(){
 
     $video = Video::where('status','=',1)->first();
 
-	return View::make('tienda.inicio', compact('sliders','articulos','video'));
+    if (Session::has('cliente'))
+	{
+    	$countCarrito = Repositoriocarrito::countCarrito();
+	} else {
+
+		$countCarrito = 0;
+	
+	}
+
+	return View::make('tienda.inicio', compact('sliders','articulos','video','countCarrito'));
 });
 
 Route::get('/productos', function(){
@@ -28,7 +37,17 @@ Route::get('/productos', function(){
 
     $slug = false;
 
-	return View::make('tienda.productos', compact('slug','categorias','articulos','rango'));
+    if (Session::has('cliente'))
+	{
+    	$countCarrito = Repositoriocarrito::countCarrito();
+	
+	} else {
+
+		$countCarrito = 0;
+	
+	}
+
+	return View::make('tienda.productos', compact('slug','categorias','articulos','rango','countCarrito'));
 
 });
 
@@ -49,19 +68,50 @@ Route::get('/productos/filter', function() {
 		return Redirect::to('/productos');
 	}
 
-	return View::make('tienda.productos', compact('slug','categorias','articulos','rango'));
+	if (Session::has('cliente'))
+	{
+
+    	$countCarrito = Repositoriocarrito::countCarrito();
+	
+	} else {
+
+		$countCarrito = 0;
+
+	}
+
+	return View::make('tienda.productos', compact('slug','categorias','articulos','rango','countCarrito'));
 
 });
 
 Route::get('/contacto', function(){
 
-	return View::make('tienda.contacto');
+	if (Session::has('cliente'))
+	{
+    	$countCarrito = Repositoriocarrito::countCarrito();
+
+	} else {
+
+		$countCarrito = 0;
+
+	}
+
+	return View::make('tienda.contacto', compact('countCarrito'));
 
 });
 
 Route::get('/tienda', function(){
 
-	return View::make('tienda.tienda');
+	if (Session::has('cliente'))
+	{
+    	$countCarrito = Repositoriocarrito::countCarrito();
+	
+	} else {
+
+		$countCarrito = 0;
+	
+	}
+
+	return View::make('tienda.tienda', compact('countCarrito'));
 
 });
 
@@ -77,7 +127,16 @@ Route::get('/productos/categoria/{name}', function($name){
 
     $slug = false;
 
-    return View::make('tienda.productos', compact('slug','categorias','articulos', 'rango'));
+    if (Session::has('cliente'))
+	{
+    	$countCarrito = Repositoriocarrito::countCarrito();
+	} else {
+
+		$countCarrito = 0;
+
+	}
+
+    return View::make('tienda.productos', compact('slug','categorias','articulos', 'rango','countCarrito'));
 
 });
 
@@ -98,7 +157,17 @@ Route::get('/productos/categoria/{name}/filter/', function($name){
 			return Redirect::to('/productos');
 		}
 
-		return View::make('tienda.productos', compact('slug','categorias','articulos','rango'));
+		if (Session::has('cliente'))
+		{
+	    	$countCarrito = Repositoriocarrito::countCarrito();
+		
+		} else {
+			
+			$countCarrito = 0;			
+		
+		}
+
+		return View::make('tienda.productos', compact('slug','categorias','articulos','rango','countCarrito'));
 		
 });
 
@@ -113,6 +182,8 @@ Route::get('/cuenta', function(){
 });
 
 Route::get('/salir', function(){
+
+	Session::flush();
 
 	Auth::logout();		// cierra la sesion
 
@@ -297,11 +368,13 @@ Route::group(['before'=>'auth-cliente'], function(){
 
 	Route::post('/carrito/changeQuantity', 'CarritoController@update');
 
-	Route::post('/carrito/createPedido', 'PedidoController@store');
+	Route::get('/carrito/pago', 'PedidoController@create');
 
 	Route::post('/carrito/get-status-user', 'CarritoController@statusUser');
 
 	Route::post('/process/payment', 'ProcessController@payment');
+
+	Route::get('/cliente/compras', 'PedidoController@showComprasCliente');
 });
 
 /*

@@ -2,14 +2,14 @@
 
 @section('contenido')
 <meta name="_token" content="{{ csrf_token() }}"/>
-<style>.envio{color: red}.total{font-weight: bold; font-size: 18px;} .cantidad{width: 120px}#completa-perfil{display: none;}</style>
+<style>.envio{color: red}.total{font-weight: bold; font-size: 18px;} .cantidad{width: 120px}#completa-perfil{display: none;}.mxn{font-size: 13px;font-weight: normal;}.importe-articulo{font-size: 13px;}</style>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-				    	<h3 class="panel-title">ARTICULOS AGREGADOS AL CARRITO</h3>
+				    	<h4 class="panel-title">ARTÍCULOS AGREGADOS AL CARRITO</h4>
 				  	</div>
 				  	<div class="panel-body">
 				  		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
@@ -48,7 +48,7 @@
   											</div>
   										</td>
   										<td> 
-  											<b><span>$</span><span class="import">{{ $articulo->importe }}</span><span>.00</span></b>
+  											<b class="importe-articulo"><span>$</span><span class="import">{{ $articulo->importe }}</span><span>.00</span></b>
   										</td>
   										<td>
   											{{ Form::open(['url'=>'/cliente/RemoveItemCart']) }}
@@ -76,11 +76,11 @@
 										</tr>
 										<tr>
 											<td class="total">Total</td>
-											<td class="total"><span>$</span><span id="total">0</span><span>.00</span></td>
+											<td class="total"><span>$</span><span id="total">0</span><span>.00</span><span class="mxn"> MXN</span></td>
 										</tr>
 									</table>
 									<center>
-										{{ Form::open(['url'=>'/carrito/createPedido','id'=>'form-crearPedido']) }}
+										{{ Form::open(['url'=>'/carrito/pago','id'=>'form-crearPedido','method'=> 'get']) }}
 											<button id="crear-pedido" class="btn btn-success" type="button">Realizar Compra</button>
 											<input type="hidden" id="importe-total" name="importe-total">
 										{{ Form::close() }}
@@ -95,21 +95,26 @@
 				  			@endif
 				  		</div>
 				  	</div>
+				  	<div class="panel-footer">
+				  		@if( count($articulos) > 0 )
+				  			<a href="/productos" class="btn btn-default"><i class="fa fa-home"></i> Continuar comprando</a>
+				  		@endif
+				  	</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	{{ HTML::script('js/bootstrap-number-input.js') }}
+{{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js') }}
+{{ HTML::script('js/bootstrap-number-input.js') }}
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
 	$(function(){
 
 		$('.input-cantidad').bootstrapNumber();
-
-		$('#subtotal').html(subtotal());
-		$('#total').html(subtotal());
+		$('#subtotal').html(numeral(subtotal()).format('0,0'));
+		$('#total').html(numeral(subtotal()).format('0,0'));
 		$('#importe-total').val(subtotal());
 
 		$('table').delegate('.span','click', function(){
@@ -122,8 +127,8 @@
 
 			padre.parents('tr').find('td:nth-child(4n) > b > span:nth-child(2n)').text(importe);
 
-			$('#subtotal').html(subtotal());
-			$('#total').html(subtotal());
+			$('#subtotal').html(numeral(subtotal()).format('0,0'));
+			$('#total').html(numeral(subtotal()).format('0,0'));
 			$('#importe-total').val(subtotal());
 			
 			$.ajax({
@@ -136,6 +141,7 @@
 					importe: importe
 				},
 				success: function(response) {
+					//$('#contadorCarrito').html(response);
 					console.log(response);
 				}
 			});
@@ -167,8 +173,9 @@
 		});
 
 		return subtotal;
+
 	}
 
-	</script>
+</script>
 
 @stop

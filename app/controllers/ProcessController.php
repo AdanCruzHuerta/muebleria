@@ -33,36 +33,64 @@ class ProcessController extends \BaseController {
         
         } catch (Conekta_Error $e) 
         {
-        	//return ['message'=>$e->getMessage()];
 
-        	$mensaje = $e->getMessage();
+        	return ['message'=>$e->getMessage()];
            
-            return View::make('tienda.respuesta', compact('mensaje'));
         }
         
-        //return ['message' => $$charge->status];
+        // 1.- Creo el pedido
 
-        $pedido = Pedido::find(Input::get('pedido'));
+        $pedido = new Pedido;
+
+        $pedido->importe_total = Input::get('importe');
 
         $pedido->status_pedidos_id = 1;
 
         $pedido->save();
 
-        $carritos = Repositoriocarrito::getArticulosClienteCarrito(Session::get('cliente'));
+        //$carritos = Repositoriocarrito::getArticulosClienteCarrito(Session::get('cliente'));
 
-        foreach($carritos as $carrito)
-        {
-            DB::table('personas_has_articulos')
-            
-                ->update(array(
+        DB::table('personas_has_articulos as p_a')
 
-                    'status'=> 1
-                ));
-        }
+            ->where('p_a.personas_id', '=', Session::get('cliente')->id)
 
-        $mensaje = $charge->status;
+            ->where('p_a.status', '=', 0)
         
-        return View::make('tienda.respuesta', compact('mensaje'));
+            ->update(array(
+
+                'pedidos_id'=> $pedido->id,
+
+                'status'    => 1
+            ));
+                
+        $mensaje = $charge->status;
+
+        $countCarrito = Repositoriocarrito::countCarrito();
+
+
+        //  Mandamos email al cliente un correo de confirmacion de su compra con su número de pedido
+        $nombreCliente = Session::get('cliente')->nombre." ".Session::get('cliente')->apellido_p." ".Session::get('cliente')->apellido_m; 
+
+        $emailCliente = Session::get('cliente')->email;
+
+        $id_pedido = $pedido->id;
+
+        $data = ['nombre'=>$nombreCliente, 'pedido'=>$id_pedido];
+
+        Mail::send('emails.confirmaPedido', $data, function ($message) use($emailCliente){
+
+             //remitente
+            $message->from('adancruzhuerta@gmail.com','Muebleria Ureña');
+
+            //asunto
+            $message->subject('Mueblería Ureña - Confirmación de pedido');
+                
+            //receptor
+            $message->to($emailCliente);
+            
+        });
+    
+        return View::make('tienda.respuesta', compact('mensaje', 'countCarrito'));
 	}
 
 

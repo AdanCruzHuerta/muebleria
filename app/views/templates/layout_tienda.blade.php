@@ -69,11 +69,11 @@
 
 											<ul class="dropdown-menu pull-right opciones-user" role="menu">
 												<li><a href="/cliente/perfil"><i class="fa fa-user"></i> Perfil</a></li>
-												<li><a href=""><i class="fa fa-money"></i> Mis compras</a></li>
+												<li><a href="/cliente/compras"><i class="fa fa-money"></i> Mis compras</a></li>
 												<li><a href="/salir"><i class="fa fa-sign-out"></i>Salir</a></li>
 											</ul>
 
-											<a href="/carrito" id="carrito_compra" type="button" class="btn btn-default btn-lg pull-right" title="Mi carrito"><i class="fa fa-shopping-cart"></i></a>
+											<a href="/carrito" id="carrito_compra" type="button" class="btn btn-default btn-lg pull-right" title="Mi carrito"><i class="fa fa-shopping-cart"></i><span id="contadorCarrito" class="badge pull-right">{{ $countCarrito }}</span></a>
 
 									@else
 
@@ -202,9 +202,9 @@
 
 				$('#carrito_compra').tooltip();
 
-				$("body").on("contextmenu",function(){
+				/*$("body").on("contextmenu",function(){
 			       	return false;
-			    });
+			    });*/
 			});
 		</script>
 	</body>

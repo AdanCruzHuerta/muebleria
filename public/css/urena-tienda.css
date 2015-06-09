@@ -642,13 +642,23 @@ h2{color:#0b56a8;}
 #opciones_tienda_2{
     margin-top: -90px;
     color: #A24B20;
-    margin-right: 60px;
+    margin-right: 90px;
+    font-size: 15px;
 }
 #carrito_compra{
     margin-top: -90px;
     color: #A24B20;
 }
+
+#carrito_compra i{
+  float: left;
+}
+
+#carrito_compra span{
+  float: right;
+  margin-left: 5px;
+}
 .opciones-user{
     margin-top: -35px;
-    margin-right: 47px;
+    margin-right: 70px;
 }

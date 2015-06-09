@@ -70,8 +70,12 @@
 	    		<label>Número ext.</label>
 	    		<input type="text" class="form-control" id="numero_ext" name="numero_ext" value="{{{ $dataPersona->numero_ext or '' }}}" placeholder="Ingresa número exterior">
 	  		</div>
-
 	  		<br><br><br>
+	  	</div>
+	  	<div class="form-group">
+	  		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	  			olis
+	  		</div>
 	  	</div>
 	</div>
 

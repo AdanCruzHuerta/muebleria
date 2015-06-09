@@ -15,9 +15,18 @@ class CarritoController extends \BaseController {
 	 */
 	public function index()
 	{
+		if (Session::has('cliente'))
+		{
+	    	$countCarrito = Repositoriocarrito::countCarrito();
+
+		}else {
+
+			$countCarrito = 0;
+		}
+
 		$articulos = Repositoriocarrito::getArticulosCliente(Session::get('cliente'));
 
-		return View::make('tienda.carrito', compact('articulos'));
+		return View::make('tienda.carrito', compact('articulos','countCarrito'));
 	}
 
 	/**
@@ -55,7 +64,9 @@ class CarritoController extends \BaseController {
 
 			$articulo->save();
 
-			return Response::json(true);
+			$countCarrito = Repositoriocarrito::countCarrito();
+
+			return Response::json(compact('countCarrito'));
 		}
 	}
 
