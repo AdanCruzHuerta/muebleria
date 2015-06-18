@@ -32,7 +32,7 @@
 
              'personas.apellido_m','personas.ciudad','personas.calle','personas.numero_ext',
 
-             'personas.numero_int','personas.telefono','personas.codigo_postal','personas.status')
+             'personas.numero_int','personas.telefono','personas.codigo_postal','personas.status','personas.horario_entrega')
 
     ->first();
 

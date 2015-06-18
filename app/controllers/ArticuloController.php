@@ -104,15 +104,7 @@ class ArticuloController extends \BaseController {
 	public function show($name)
 	{
 
-		if (Session::has('cliente'))
-		{
-	    	$countCarrito = Repositoriocarrito::countCarrito();
-		
-		} else {
-
-			$countCarrito = 0;
-		
-		}
+		$countCarrito = Repositoriocarrito::countCarrito();
 
         $articulo = Helper::getArticulo($name);
 

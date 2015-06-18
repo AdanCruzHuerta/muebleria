@@ -22,13 +22,21 @@
 						  	</thead>
 						  	<tbody>
 						  		@foreach($pedidos as $pedido)
+
+						  		<?php 
+
+						  			$fecha = explode(" ", $pedido->created_at);
+
+						  			$fecha = explode("-", $fecha[0]);
+
+						  		?>
 								
 								<tr>
 									<td><i class="fa fa-chevron-right"></i></td>
 									<td>{{ $pedido->id }} </td>
 									<td>@if($pedido->status == 1){{ 'Pagado, pendiente de entrega' }} @endif</td>
-									<td>{{ $pedido->created_at }} </td>
-									<td>{{ "$ ".number_format($pedido->importe_total)."00"}}</td>
+									<td>{{ $fecha[2]."-".$fecha[1]."-".$fecha[0] }} </td>
+									<td>{{ "$ ".number_format($pedido->importe_total).".00"}}</td>
 								</tr>
 								
 						  		@endforeach

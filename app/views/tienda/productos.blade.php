@@ -10,7 +10,6 @@
 			$categoriaActual = end($categoriaActual);
 		}
 
-
 		$precios = explode(',', $rango);
 	?>
 	<section>
@@ -28,6 +27,26 @@
                         <hr style="border: 1px solid #777777;"/>
 
                         <ul class="nav" id="side-menu">
+                        		<li>
+									<a>
+										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Comedores
+									</a>
+								</li>
+								<li>
+									<a>
+										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Mesas de centro
+									</a>
+								</li>
+								<li>
+									<a>
+										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Salas 3-2-1
+									</a>
+								</li>
+								<li>
+									<a>
+										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Salas esquineras
+									</a>
+								</li>
                             @foreach($categorias as $categoria)
                                 <li>
                                     <a href="/productos/categoria/{{$categoria->slug}}" class="@if( ucwords($categoriaActual) == ucwords(strtolower($categoria->nombre))) {{'menu-active'}} @endif)">
@@ -47,22 +66,7 @@
 								</li>
 								<li>
 									<a>
-										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Salas esquineras
-									</a>
-								</li>
-								<li>
-									<a>
-										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Comedores
-									</a>
-								</li>
-								<li>
-									<a>
-										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Mesas de centro
-									</a>
-								</li>
-								<li>
-									<a>
-										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Salas 3-2-1
+										<i class="fa fa-angle-right"></i>&nbsp;&nbsp;&nbsp;Sofás
 									</a>
 								</li>
                         </ul>
@@ -98,7 +102,7 @@
 									<img class="article" src="{{ $articulo->ruta_corta }}" alt="Muebles de Mueblería Ureña"><br>
 									<div class="label label-info"><i class="fa fa-tag"></i> {{{ isset($articulo->nombre_categoria) ? $articulo->nombre_categoria : 'Nuevo' }}} </div>
 									<div class="caption">
-										<h5><b>{{ $articulo->nombre." - $ ".$articulo->precio.".00" }}</b></h5>
+										<h5><b>{{ $articulo->nombre." - $ ".number_format($articulo->precio).".00" }}</b></h5>
 										<p><a href="/productos/{{$articulo->slug}}" class="btn btn-primary btn-block articulo" data-id="{{ $articulo->id }}"><i class="fa fa-book"></i> Ver detalles</a></p>
 									</div><!-- end caption-->
 								</div>

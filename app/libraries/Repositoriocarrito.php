@@ -37,24 +37,61 @@ class Repositoriocarrito {
 
        static function countCarrito()
        {
-              $id_persona = Session::get('cliente')->persona_id;
 
-              $count = DB::table('personas as p')
+              if (Session::has('cliente'))
+              {
+              
+                     $id_persona = Session::get('cliente')->persona_id;
 
-                     ->join('personas_has_articulos as p_a', 'p.id', '=', 'p_a.personas_id')
+                     $count = DB::table('personas as p')
 
-                     ->join('articulos as a', 'p_a.articulos_id', '=', 'a.id')
+                            ->join('personas_has_articulos as p_a', 'p.id', '=', 'p_a.personas_id')
 
-                     ->where('p.id', '=', $id_persona)
+                            ->join('articulos as a', 'p_a.articulos_id', '=', 'a.id')
 
-                     ->where('p_a.status', '=', 0)
+                            ->where('p.id', '=', $id_persona)
 
-                     ->select('p_a.id')
+                            ->where('p_a.status', '=', 0)
 
-                     ->get();
+                            ->select('p_a.id')
 
-              $count = count($count);
+                            ->get();
+
+                     $count = count($count);
+
+              }else {
+
+                     $count = 0;
+              }
 
               return $count; 
+              
+       }
+
+       static function getArticuloExiste($articulo_id)
+       {
+
+              $id_persona = Session::get('cliente')->persona_id;
+
+              $existe = DB::table('personas as p')
+
+                            ->join('personas_has_articulos as p_a', 'p.id', '=', 'p_a.personas_id')
+
+                            ->join('articulos as a', 'p_a.articulos_id', '=', 'a.id')
+
+                            ->where('p.id', '=', $id_persona)
+
+                            ->where('a.id', '=', $articulo_id)
+
+                            ->select('p_a.id')
+
+                            ->get();
+
+              if( count($existe) > 0)
+              {
+                     return true;
+              }
+
+              return false;
        }
 }

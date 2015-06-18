@@ -15,14 +15,8 @@ class CarritoController extends \BaseController {
 	 */
 	public function index()
 	{
-		if (Session::has('cliente'))
-		{
-	    	$countCarrito = Repositoriocarrito::countCarrito();
-
-		}else {
-
-			$countCarrito = 0;
-		}
+		
+		$countCarrito = Repositoriocarrito::countCarrito();
 
 		$articulos = Repositoriocarrito::getArticulosCliente(Session::get('cliente'));
 
@@ -36,20 +30,30 @@ class CarritoController extends \BaseController {
 	 */
 	public function store()
 	{
-		$carrito = new Carrito;
 
-		$carrito->personas_id = Input::get('user_id');
+		$existe = Repositoriocarrito::getArticuloExiste(Input::get('articulo_id'));
 
-		$carrito->articulos_id = Input::get('articulo_id');
-
-		$carrito->importe = Input::get('importe');
-
-		if($carrito->save())
+		if(! $existe)
 		{
-			return Redirect::to('/carrito');
+			$carrito = new Carrito;
+
+			$carrito->personas_id = Input::get('user_id');
+
+			$carrito->articulos_id = Input::get('articulo_id');
+
+			$carrito->importe = Input::get('importe');
+
+			if($carrito->save())
+			{
+				return Redirect::to('/carrito');
+			}
+
+			return Redirect::back()->with('error', true);
+
 		}
 
-		return Redirect::back()->with('error', true);
+		return Redirect::to('/carrito')->with('existe',true);	
+
 	}
 
 	public function update()

@@ -1,7 +1,7 @@
 <?php
 /*
 |--------------------------------------------------------------------------
-| 		Application Routes Muebleria Ureña
+| 		Application Routes Mueblería Ureña
 | 		Desarrollado por SharkSoft 2015.
 |--------------------------------------------------------------------------
 |
@@ -15,14 +15,7 @@ Route::get('/', function(){
 
     $video = Video::where('status','=',1)->first();
 
-    if (Session::has('cliente'))
-	{
-    	$countCarrito = Repositoriocarrito::countCarrito();
-	} else {
-
-		$countCarrito = 0;
-	
-	}
+    $countCarrito = Repositoriocarrito::countCarrito();
 
 	return View::make('tienda.inicio', compact('sliders','articulos','video','countCarrito'));
 });
@@ -37,15 +30,7 @@ Route::get('/productos', function(){
 
     $slug = false;
 
-    if (Session::has('cliente'))
-	{
-    	$countCarrito = Repositoriocarrito::countCarrito();
-	
-	} else {
-
-		$countCarrito = 0;
-	
-	}
+    $countCarrito = Repositoriocarrito::countCarrito();
 
 	return View::make('tienda.productos', compact('slug','categorias','articulos','rango','countCarrito'));
 
@@ -61,22 +46,13 @@ Route::get('/productos/filter', function() {
 
 	$slug = false;
 
+	$countCarrito = Repositoriocarrito::countCarrito();
+
 	$articulos = Helper::getArticulosForPrice($rangoPrecios);
 
 	if( $articulos->isEmpty() )
 	{
 		return Redirect::to('/productos');
-	}
-
-	if (Session::has('cliente'))
-	{
-
-    	$countCarrito = Repositoriocarrito::countCarrito();
-	
-	} else {
-
-		$countCarrito = 0;
-
 	}
 
 	return View::make('tienda.productos', compact('slug','categorias','articulos','rango','countCarrito'));
@@ -85,15 +61,7 @@ Route::get('/productos/filter', function() {
 
 Route::get('/contacto', function(){
 
-	if (Session::has('cliente'))
-	{
-    	$countCarrito = Repositoriocarrito::countCarrito();
-
-	} else {
-
-		$countCarrito = 0;
-
-	}
+	$countCarrito = Repositoriocarrito::countCarrito();
 
 	return View::make('tienda.contacto', compact('countCarrito'));
 
@@ -101,15 +69,7 @@ Route::get('/contacto', function(){
 
 Route::get('/tienda', function(){
 
-	if (Session::has('cliente'))
-	{
-    	$countCarrito = Repositoriocarrito::countCarrito();
-	
-	} else {
-
-		$countCarrito = 0;
-	
-	}
+	$countCarrito = Repositoriocarrito::countCarrito();
 
 	return View::make('tienda.tienda', compact('countCarrito'));
 
@@ -127,14 +87,7 @@ Route::get('/productos/categoria/{name}', function($name){
 
     $slug = false;
 
-    if (Session::has('cliente'))
-	{
-    	$countCarrito = Repositoriocarrito::countCarrito();
-	} else {
-
-		$countCarrito = 0;
-
-	}
+    $countCarrito = Repositoriocarrito::countCarrito();
 
     return View::make('tienda.productos', compact('slug','categorias','articulos', 'rango','countCarrito'));
 
@@ -157,15 +110,7 @@ Route::get('/productos/categoria/{name}/filter/', function($name){
 			return Redirect::to('/productos');
 		}
 
-		if (Session::has('cliente'))
-		{
-	    	$countCarrito = Repositoriocarrito::countCarrito();
-		
-		} else {
-			
-			$countCarrito = 0;			
-		
-		}
+		$countCarrito = Repositoriocarrito::countCarrito();
 
 		return View::make('tienda.productos', compact('slug','categorias','articulos','rango','countCarrito'));
 		
@@ -375,6 +320,7 @@ Route::group(['before'=>'auth-cliente'], function(){
 	Route::post('/process/payment', 'ProcessController@payment');
 
 	Route::get('/cliente/compras', 'PedidoController@showComprasCliente');
+
 });
 
 /*

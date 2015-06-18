@@ -73,12 +73,20 @@
 	  		<br><br><br>
 	  	</div>
 	  	<div class="form-group">
-	  		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-	  			olis
-	  		</div>
-	  	</div>
+			<label class="col-xs-12 col-sm-12 col-md-6 col-lg-6 control-label">
+				Seleccione el horario preferente de entrega:
+			</label>
+		    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		    	<select name="horario" id="horario" class="form-control">
+		    		<option value="">Selecciona Horario</option>
+		    		<option @if($dataPersona->horario_entrega == 1) {{ "selected = 'selected'" }} @endif value="1" >De 8 am a 12 pm</option>
+		    		<option @if($dataPersona->horario_entrega == 2) {{ "selected = 'selected'" }} @endif value="2" >De 12 pm a 3 pm</option>
+		    		<option @if($dataPersona->horario_entrega == 3) {{ "selected = 'selected'" }} @endif value="3" >De 3 pm a 5 pm</option>
+		    		<option @if($dataPersona->horario_entrega == 4) {{ "selected = 'selected'" }} @endif value="4" >De 5 pm a 8 pm</option>
+		    	</select>
+		    </div>
+		 </div>
 	</div>
-
 	<br><br>
 	
 	<div class="row">

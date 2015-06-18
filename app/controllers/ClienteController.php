@@ -200,6 +200,8 @@ class ClienteController extends \BaseController {
 
 		$persona->status = 1; // cambiamos el status a 1
 
+		$persona->horario_entrega =  Input::get('horario');
+
 		if($persona->save())
 		{
 			return Redirect::to('/cliente/perfil/editar-direccion');
