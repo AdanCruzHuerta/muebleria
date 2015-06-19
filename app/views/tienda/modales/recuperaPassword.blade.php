@@ -1,3 +1,4 @@
+    <style></style>
     <!-- Crear Categoria -->
     <div class="modal fade" id="modal-password">
         <div class="modal-dialog modal-sm">
@@ -6,7 +7,12 @@
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Recuperar contraseña</h4>
                 </div>
-                <div id="alerta-password"></div>
+
+                <div id="" class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <center><i class="fa fa-exclamation-circle"></i> El Email ingresado no existe.</center>
+                </div> 
+                
                 <form id="form-password">
                     <div class="modal-body">
                         <div class="row">
@@ -34,7 +40,6 @@
 $(function(){
 
     var mensajeTrue = '<div class="alert alert-success"><center>Hemos mandado una clave a su email, favor de revisar</center></div>';
-    var mensajeFalse = '<div class="alert alert-danger"><center>No se ha podido comprobar su usuario, intentelo nuevamente</center></div>';
 
     var validacion = $('#form-password').validate({
             errorElement: "span",

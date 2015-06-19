@@ -36,7 +36,9 @@
 									@if(Session::get('error'))
 										<div class="alert alert-danger alert-dismissable">
 											<button type="button" class="close" data-dismiss="alert">&times;</button>
-										  	<strong><i class="fa fa-ban"></i></strong> Los datos de acceso son incorrectos !!
+											<center>
+												<strong><i class="fa fa-exclamation-circle"></i></strong> El Emai y la Contraseña son incorrectos. Intentalo nuevamente.	
+											</center>
 										</div>
 									@endif
 
@@ -136,7 +138,7 @@
 
 		var mensajeTrue = '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button><strong><i class="fa fa-check-circle"></i></strong> Tu cuenta ha sido creada correctamente, ahora inicia sesion en Muebleria Ureña.</div>';
 
-		var mensajeFalse = '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button><strong><i class="fa fa-times"></i></strong> Algo ha salido mal, intentalo nuevamente.</div>';
+		var mensajeFalse = '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert">&times;</button><center><h5><i class="fa fa-exclamation-circle"></i> El usuario ya se encuentra registrado, ingrese un email diferente.</h5></center></div>';
 		
 		var registro = $('#agregarCliente').validate({
 			errorElement: "span",

@@ -51,13 +51,15 @@
 				</div>
 			</div>
 		</nav>
+
 		<div class="side-collapse-container">
+			
 			<header>
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="text-center">
-								<img src="/img/logos/logo-header.png" class="logo-urena">
+								<a href="/"><img src="/img/logos/logo-header.png" class="logo-urena"></a>
 							</div>
 							<div class="hidden-xs">
 
@@ -92,6 +94,7 @@
 					</div>
 				</div>
 			</header>
+			
 			<nav class="hidden-xs">
 					<div class="container">
 						<div class="navbar navbar-default">
@@ -118,14 +121,15 @@
 				          	</div>
 						</div> 
 					</div>
-				</nav>
-				{{HTML::script('js/jquery.min.js')}}
-				{{HTML::script('js/bootstrap.min.js')}}
-				{{HTML::script('js/bootstrap-slider.js')}}
+			</nav>
+			
+			{{HTML::script('js/jquery.min.js')}}
+			{{HTML::script('js/bootstrap.min.js')}}
+			{{HTML::script('js/bootstrap-slider.js')}}
 
-				@yield('contenido')
+			@yield('contenido')
 				
-				<footer>
+			<footer>
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 separador">
@@ -174,11 +178,14 @@
 							</div>
 						</div>
 					</div>
-				</footer>
-			</div>
+			</footer>
+
+		</div>
 
 		{{HTML::script('js/validate.js')}}
+
 		{{HTML::script('js/messages_es.js')}}
+		
 		<script>
 			$(document).ready(function(){
 				$( ".btn_nav" ).hover(
@@ -207,5 +214,6 @@
 			    });*/
 			});
 		</script>
+	
 	</body>
 </html>
