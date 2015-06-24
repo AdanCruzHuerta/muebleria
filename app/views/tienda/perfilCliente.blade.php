@@ -28,9 +28,7 @@
   					<div class="panel-body">
     					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     		<div class="breadcrumb">
-                    			<center>
-									<img src="{{ $dataCliente->photo_user }}" class="img-thumbnail">
-								</center><br>	
+                    			<br>
 								<ul class="list-group">
 									<li class="list-group-item @if(Request::path()=='cliente/perfil/editar-cuenta') {{ 'active' }} @endif">
 										<i class="fa fa-user"></i>

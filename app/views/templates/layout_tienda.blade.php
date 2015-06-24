@@ -14,8 +14,9 @@
 		{{HTML::style('css/bootstrap-slider.css')}}
 		{{HTML::style('css/normalize.css')}}
 		{{HTML::style('css/urena-tienda.css')}}
+		{{HTML::style('http://fonts.googleapis.com/css?family=Poiret+One')}}
 	</head>
-	<body>
+	<body class="fuente">
 		<nav class="visible-xs">
 			<div class="navbar navbar-fixed-top navbar-default">
 				<div class="container">
@@ -58,9 +59,11 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							
 							<div class="text-center">
 								<a href="/"><img src="/img/logos/logo-header.png" class="logo-urena"></a>
 							</div>
+							
 							<div class="hidden-xs">
 
 								@if(Auth::user()) 
@@ -87,15 +90,15 @@
 
 									<a href="/cuenta" id="opciones_tienda_1" type="button" class="btn btn-default btn-lg pull-right opciones_cliente" title="Iniciar Sesión / Registrarse"><i class="fa fa-user"></i></a>
 
-								@endif
-								
+								@endif	
 							</div>
+
 						</div>
 					</div>
 				</div>
 			</header>
 			
-			<nav class="hidden-xs">
+			<nav class="hidden-xs descripcion">
 					<div class="container">
 						<div class="navbar navbar-default">
 							<div class="container-fluid">
@@ -108,7 +111,7 @@
 									<li class="@if( $path =='/' || $path == 'cuenta'){{'activo'}} @endif">
 										<a href="/" class="btn_nav">Inicio</a>
 									</li>
-									<li class="@if($path =='productos' || $path == 'productos/filter' || $route == 'productos/categoria/{name}' || $route == 'producto/nuevo/{name}' || $route == 'productos/{name}'){{'activo'}} @endif">
+									<li class="@if($path =='productos' || $path == 'productos/filter' || $route == 'productos/categoria/{name}' || $route == 'producto/nuevo/{name}' || $route == 'productos/{name}' || $route == 'productos/categoria/{name}/filter'){{'activo'}} @endif">
 										<a href="/productos" class="btn_nav">Productos</a>
 									</li>
 									<li class="@if($path =='contacto'){{'activo'}} @endif">
@@ -129,7 +132,7 @@
 
 			@yield('contenido')
 				
-			<footer>
+			<footer class="descripcion">
 					<div class="container">
 						<div class="row">
 							<div class="col-xs-12 col-sm-6 col-md-8 col-lg-8 separador">
@@ -209,9 +212,9 @@
 
 				$('#carrito_compra').tooltip();
 
-				/*$("body").on("contextmenu",function(){
+				$("body").on("contextmenu",function(){
 			       	return false;
-			    });*/
+			    });
 			});
 		</script>
 	

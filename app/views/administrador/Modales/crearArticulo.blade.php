@@ -10,7 +10,8 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Agregar nuevo articulo</h4>
             </div>
-            <form id="form-articulo" method="post" action="/administrador/productos/articulos/create" enctype="multipart/form-data">
+            {{ Form::open(['id'=>'form-articulo','url'=>'/administrador/productos/articulos/create', 'files'=> true]) }}
+                
                 <div class="modal-body">
                     <div class="row">
 
@@ -63,9 +64,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button id="guardar" type="submit" class="btn btn-primary">Guardar</button>
                 </div>
-            </form>
+
+            {{ Form::close() }}
         </div>
     </div>
 </div>
@@ -96,8 +98,7 @@
             rules: {
                 nombre: {required: true},
                 descripcion: {required: true},
-                proveedor: {required: true},
-                precio: {required:true, digits:true}
+                proveedor: {required: true}
             },
             highlight: function(element, error) {
                 $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
@@ -106,6 +107,7 @@
                 $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
             },
             submitHandler: function() {
+               $('#guardar').text('Espera...');
                submit();
             }
         });

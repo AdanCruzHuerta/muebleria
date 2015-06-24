@@ -12,7 +12,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4 class="panel-title">Contacto Ureña</h4>
+						<h4 class="panel-title fuente">Contacto Ureña</h4>
 					</div>
 					<div class="panel-body">
 						<div id="response"></div>

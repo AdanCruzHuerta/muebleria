@@ -20,10 +20,10 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th><center>Nombre</center></th>
-								<th><center>Email</center></th>
-								<th><center>Telefono</center></th>
-								<th><center>Opciones</center></th>
+								<th>Nombre</th>
+								<th>Email</th>
+								<th>Telefono</th>
+								<th>Opciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -34,7 +34,7 @@
 								<td>{{ $proveedor->telefono }}</td>
 								<td>
 									<center>
-										<a href="/administrador/proveedores/editar/{{$proveedor->id}}" title="Editar" class="opciones-fletera"><i class="fa fa-pencil"></i></a>
+										<a href="/administrador/proveedores/editar/{{$proveedor->id}}" title="Editar" class="opciones-fletera"><i class="fa fa-pencil-square-o"></i></a>
 
 										<a href="javascript:;" title="Borrar" class="opciones-fletera delete-proveedor" data-id="{{ $proveedor->id }}" data-nombre="{{ $proveedor->nombre }}" data-action="eliminar" ><i class="fa fa-trash-o"></i></a>
 									</center>

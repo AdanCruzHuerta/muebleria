@@ -26,6 +26,7 @@
 			@foreach($videos as $video)
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 					<div class="panel panel-default">
+						
 						<div class="panel-heading">
 							<a class="btn btn-default pull-right" data-toggle="collapse" href="#collapseExample{{$video->id}}" aria-expanded="false" aria-controls="collapseExample">
 				  				<i class="fa fa-bars"></i>
@@ -42,18 +43,19 @@
 								</span>
 			 				@endif
 						</div>
+						
 						<div class="collapse panel-body" id="collapseExample{{$video->id}}">
 							<?php 
 
-								$url = explode('?', $video->frame);
+								$url = explode('embed/', $video->frame);
 
-								$id = explode('embed/', $url[0]);
+								$id = explode('" ', $url[1]);
 
-							 ?>
+							?>
 							<div class="row">
 								<div class="col-xs-12 col-dm-12 col-md-12 col-lg-12">
 									<center>
-										<img src="http://img.youtube.com/vi/{{$id[1]}}/0.jpg" alt="Video de Mueblería Ureña" class="img-thumbnail img-video">
+										<img src="http://img.youtube.com/vi/{{$id[0]}}/0.jpg" alt="Video de Mueblería Ureña" class="img-thumbnail img-video">
 									</center>
 								</div>
 							</div>

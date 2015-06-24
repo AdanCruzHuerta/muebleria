@@ -81,7 +81,7 @@
             browseClass: 'btn btn-primary btn-block',
             browseLabel: ' Seleccionar Imagen',
             browseIcon: '<i class="fa fa-picture-o"></i>',
-            initialPreview: '<img src="/img/producto.png" class="file-preview-image">',
+            initialPreview: '<img src="/img/picture.png" class="file-preview-image">',
             allowedFileExtensions: ["jpg", "png"],
             allowedFileTypes: ["image"],
             showCaption: false,

@@ -36,7 +36,7 @@
 								<td>
 									<center>
 										
-										<a href="/administrador/fleteras/editar/{{$fletera->id}}" title="Editar" class="opciones-fletera"><i class="fa fa-pencil"></i></a>
+										<a href="/administrador/fleteras/editar/{{$fletera->id}}" title="Editar" class="opciones-fletera"><i class="fa fa-pencil-square-o"></i></a>
 
 										<a href="javascript:;" title="Borrar" class="opciones-fletera delete-fletera" data-id="{{ $fletera->id }}" data-nombre="{{ $fletera->nombre }}"><i class="fa fa-trash-o"></i></a>
 										

@@ -18,6 +18,7 @@ Route::get('/', function(){
     $countCarrito = Repositoriocarrito::countCarrito();
 
 	return View::make('tienda.inicio', compact('sliders','articulos','video','countCarrito'));
+
 });
 
 Route::get('/productos', function(){
@@ -377,7 +378,9 @@ Route::get('/add-slider', function(){
 
 	$slider->status_slider = "1";
 
-	$slider->ruta_slider = "/img/slider/slider1.jpg";
+	$slider->ruta_corta = "/img/slider/slider1.jpg";
+
+	$slider->ruta_absoluta = public_path()."/img/slider/slider1.jpg";
 
 	$slider->save();
 

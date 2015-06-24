@@ -2,16 +2,16 @@
 
 @section('contenido')
 
-	{{ HTML::style('css/dataTables.bootstrap.css') }}
+    {{ HTML::style('css/dataTables.bootstrap.css') }}
 
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<h2><i class="fa fa-book"></i> Productos</h2>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h2><i class="fa fa-book"></i> Productos</h2>
             <ol class="breadcrumb breadcrumb-arrow">
                 @if($categoriaActual->id == 1)
-    			
-                	<li><a href="/admininistrador">Home</a></li>
-    				<li class="active"><span>Productos</span></li>
+                
+                    <li><a href="/admininistrador">Home</a></li>
+                    <li class="active"><span>Productos</span></li>
                     <li class="active"><span>Categorías</span></li>
                 
                 @else
@@ -22,12 +22,12 @@
                     <li class="active"><span>{{ ucwords(strtolower($categoriaActual->nombre)) }}</span></li>
                 
                 @endif
-			</ol>
-		</div>
-	</div>
+            </ol>
+        </div>
+    </div>
 
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
                 @if( $categoriaActual->id == 1 )
 
                     @include('administrador.Recursos.tablaCategorias')
@@ -37,9 +37,9 @@
                     @include('administrador.Recursos.listaDeArticulos')
 
                  @endif
-		</div>
+        </div>
 
-		<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
             
             @if( $categoriaActual->id == 1 )
                 
@@ -56,13 +56,13 @@
                 <br/>
 
             @endif
-			<p class="info_seccion">En esta seccion puede consultar las diferentes categorías de productos.</p>
-		</div>
-        	
-	</div>
+            <p class="info_seccion">En esta seccion puede consultar las diferentes categorías de productos.</p>
+        </div>
+            
+    </div>
 
     <!-- Cargamos modales  -->
-    @if( $categoriaActual->nivel_actual < 1 )
+    @if( $categoriaActual->id == 1 )
 
         @include('administrador.Modales.crearCategoria')
 

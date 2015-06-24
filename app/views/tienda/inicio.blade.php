@@ -32,7 +32,7 @@
 		</div>
 	</section>
 	
-	<section>
+	<section class="descripcion">
 			<div class="container">
 				<br>
 				<div class="row">
@@ -47,7 +47,7 @@
 										</center>
 									</div>
 									<div class="col-xs-12 col-sm-11 col-md-10 col-lg-10 datos">
-										<h4>Misión</h4>
+										<h4 class="descripcion">Misión</h4>
 										<p>Nuestra misión es brindar a los clientes, un servicio de calidad, con productos de vanguardia,clase y estilo.</p>
 									</div>
 									<div class="hidden-xs col-sm-1 col-md-2 col-lg-2">
@@ -56,7 +56,7 @@
 										</center>
 									</div>
 									<div class="col-xs-12 col-sm-11 col-md-10 col-lg-10 datos">
-										<h4>Visión</h4>
+										<h4 class="descripcion">Visión</h4>
 										<p>Nuestra visión es ser una empresa líder en el sector mueblero con una amplia gama de productos.</p>
 									</div>
 									<div class="hidden-xs col-sm-1 col-md-2 col-lg-2">
@@ -65,7 +65,7 @@
 										</center>
 									</div>
 									<div class="col-xs-12 col-sm-11 col-md-10 col-lg-10 datos">
-										<h4>Objetivo</h4>
+										<h4 class="descripcion">Objetivo</h4>
 										<p>La satisfacción de nuestros clientes, desde la primera compra.</p>
 									</div>
 								</div>
@@ -81,7 +81,7 @@
 			</div>
 	</section>
 	
-	<section>
+	<section class="descripcion">
 			<div class="container">
 				<br>
 				<div class="row">
@@ -97,11 +97,11 @@
 							@foreach($articulos as $articulo)
 								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 									<div class="thumbnail show-article">
-										<img class="article" src="{{ $articulo->ruta_corta }}" alt="Muebles de Mueblería Ureña"><br>
+										<a href="/producto/nuevo/{{$articulo->slug}}"><img class="article" src="{{ $articulo->ruta_corta }}" alt="Muebles de Mueblería Ureña"></a><br>
 										<div class="label label-info"><i class="fa fa-tag"></i> Nuevo!</div>
 
 										<div class="caption">
-											<h5><b>{{ $articulo->nombre.' - $'.$articulo->precio.'.00' }}</b></h5>
+											<h5>{{ $articulo->nombre.' - $'.number_format($articulo->precio).'.00' }}</h5>
 											<p><a href="/producto/nuevo/{{$articulo->slug}}" class="btn btn-primary btn-block articulo"><i class="fa fa-book"></i> Ver detalles</a></p>
 										</div><!-- end caption-->
 									</div>

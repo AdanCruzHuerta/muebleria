@@ -23,7 +23,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'homestead',
+			'database'  => 'rgdiazc1_muebleria',
 			'username'  => 'homestead',
 			'password'  => 'secret',
 			'charset'   => 'utf8',

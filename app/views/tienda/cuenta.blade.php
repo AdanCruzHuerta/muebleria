@@ -110,7 +110,7 @@
 											<div class="form-group check-modal">
 												<label for="">
 													<input type="checkbox" id="check_ok" name="check_ok">&nbsp;He leído y acepto los términos de aviso de privacidad.
-													<a href="http://localhost:8000/tienda" target="_blank">Leer</a>
+													<a href="/tienda" target="_blank">Leer</a>
 												</label>
 											</div>
 											<div class="form-group">

@@ -531,3 +531,7 @@ table.dataTable thead .sorting:after {
     padding: 2px;
     border-radius: 1000px;
 }
+.opciones-fletera{
+    margin-left: 10px;
+    color: #000;
+}

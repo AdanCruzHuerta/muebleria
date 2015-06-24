@@ -99,10 +99,10 @@
 		            @foreach($articulos as $articulo)
 		                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 								<div class="thumbnail show-article">
-									<img class="article" src="{{ $articulo->ruta_corta }}" alt="Muebles de Mueblería Ureña"><br>
+									<a href="/productos/{{$articulo->slug}}"><img class="article" src="{{ $articulo->ruta_corta }}" alt="Muebles de Mueblería Ureña"/></a><br>
 									<div class="label label-info"><i class="fa fa-tag"></i> {{{ isset($articulo->nombre_categoria) ? $articulo->nombre_categoria : 'Nuevo' }}} </div>
 									<div class="caption">
-										<h5><b>{{ $articulo->nombre." - $ ".number_format($articulo->precio).".00" }}</b></h5>
+										<h5>{{ $articulo->nombre." - $ ".number_format($articulo->precio).".00" }}</h5>
 										<p><a href="/productos/{{$articulo->slug}}" class="btn btn-primary btn-block articulo" data-id="{{ $articulo->id }}"><i class="fa fa-book"></i> Ver detalles</a></p>
 									</div><!-- end caption-->
 								</div>

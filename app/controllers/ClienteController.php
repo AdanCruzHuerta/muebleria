@@ -86,15 +86,7 @@ class ClienteController extends \BaseController {
 
 	public function showDataCliente()
 	{
-		if (Session::has('cliente'))
-		{
-	    	$countCarrito = Repositoriocarrito::countCarrito();
-		
-		}else {
-
-			$countCarrito = 0;
-		
-		}
+		$countCarrito = Repositoriocarrito::countCarrito();
 
 		$dataCliente = $this->cliente;
 
@@ -104,16 +96,7 @@ class ClienteController extends \BaseController {
 
 	public function edit()
 	{
-		if (Session::has('cliente'))
-		{
-
-	    	$countCarrito = Repositoriocarrito::countCarrito();
-		
-		} else {
-
-			$countCarrito = 0;
-
-		}
+		$countCarrito = Repositoriocarrito::countCarrito();
 
 		$dataCliente = $this->cliente;
 
@@ -130,15 +113,7 @@ class ClienteController extends \BaseController {
 
 		$municipios = Municipio::all();
 
-		if (Session::has('cliente'))
-		{
-	    	$countCarrito = Repositoriocarrito::countCarrito();
-		
-		} else {
-
-			$countCarrito = 0;
-		
-		}
+		$countCarrito = Repositoriocarrito::countCarrito();
 
 		if($dataCliente->status == 0)
 		{

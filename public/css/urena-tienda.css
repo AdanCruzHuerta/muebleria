@@ -23,8 +23,9 @@ header {
 	border-bottom: 3px solid #DDD0C2;
 	margin-bottom: -25px;
 }
-nav{
-	
+.fuente, .fuente h4{
+    font-family: 'Poiret One', cursive;
+    font-weight: bold;
 }
 .sin-padding {
 	padding-left: 0px;

@@ -219,6 +219,15 @@ class PaginaController extends \BaseController {
 	{
 		if (Request::ajax())
 		{
+			$videos = Video::all();
+
+			foreach($videos as $video)
+			{
+				$video->status = 0;
+
+				$video->save();
+			}
+
 			$video = new Video;
 
 			$video->nombre = Input::get('nombre');

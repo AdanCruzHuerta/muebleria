@@ -29,7 +29,9 @@ class CategoriaController extends \BaseController {
 
         $categorias = Helper::categorias($categoriaActual); //categorias cuyo padre es raiz
 
-		return View::make('administrador.productosCategorias', compact('administrador','categoriaActual','categorias','mensajes'));
+        $proveedores = Proveedor::all();
+
+		return View::make('administrador.productosCategorias', compact('administrador','categoriaActual','categorias','mensajes','proveedores'));
 
 	}
 
