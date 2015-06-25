@@ -97,7 +97,7 @@
 	                    </a>
 	                    <ul class="dropdown-menu dropdown-user">
 	                        <li>
-	                        	<a href="/administrador/perfil"><i class="fa fa-user fa-fw"></i> Perfil de Usuario</a>
+	                        	<a href="{{--/administrador/perfil--}}"><i class="fa fa-user fa-fw"></i> Perfil de Usuario</a>
 	                        </li>
 	                        <li>
 	                        	<a href="/administrador/logout"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
@@ -114,8 +114,8 @@
 	            		<ul class="nav" id="side-menu">
 	            			<li class="nav-perfil @if($path == 'administrador/perfil') {{ 'selected-perfil' }} @endif ">
 	                            <div class="img-perfil">
-	                                <a href="/administrador/perfil">
-	                                    <img src="{{ $administrador->photo_user }}" class="img-responsive">
+	                                <a href="{{--/administrador/perfil--}}">
+	                                    <img src="{{ Auth::user()->photo_user }}" class="img-responsive">
 	                                </a>
 	                            </div>
 	                            <div class="info-perfil">
@@ -126,9 +126,9 @@
 	                        <li>
 	                            <a href="/administrador/panel" class="@if($path =='administrador/panel') {{ 'active' }} @endif" ><i class="fa fa-bar-chart-o fa-fw"></i> Estadisticas</a>
 	                        </li>
-                            <li>
+                           {{--  <li>
                                 <a href="/administrador/empleados" class="@if($path =='administrador/empleados') {{'active'}} @endif"><i class="fa fa-user"></i> Empleados</a>
-                            </li>
+                            </li> --}}
 	                        <li>
 	                            <a href="#" class="@if($path == 'administrador/pagina' || $path == 'administrador/pagina/videos' || $path == 'administrador/pagina/slider' ) {{ 'active' }} @endif" ><i class="fa fa-desktop fa-fw"></i> Pagina<span class="fa arrow"></span></a>
 	                            <ul class="nav nav-second-level">
@@ -143,31 +143,28 @@
 		                            </li>
 	                            </ul>
 	                        </li>
-	                        <li>
+	                        {{-- <li>
 	                            <a href="/administrador/clientes" class="@if($route == 'administrador/clientes' || $route == 'administrador/clientes/show/{id}') {{ 'active' }} @endif" ><i class="fa fa-users fa-fw"></i> Clientes</a>
-	                        </li> 
+	                        </li>  --}}
 	                        <li>
 	                            <a href="/administrador/fleteras" class="@if($route == 'administrador/fleteras' || $route == 'administrador/fleteras/add-fletera' || $route == 'administrador/fleteras/editar/{id}') {{ 'active'}} @endif"><i class="fa fa-truck fa-fw"></i> Fleteras</a>
 	                        </li>
-	                        <li>
-	                            <a href="#"><i class="fa fa-edit fa-fw"></i> Pedidos</a>
-	                        </li>
+	                       {{--  <li>
+	                            <a href="/administrador/pedidos" class="@if($route == 'administrador/pedidos') {{ 'active' }}  @endif"><i class="fa fa-file-text-o"></i> Pedidos</a>
+	                        </li> --}}
 	                        <li>
 	                            <a href="#" class="@if($path == 'administrador/productos/categorias' || $path == 'administrador/productos/articulos' || $route == 'administrador/productos/categorias/{name}' ) {{ 'active'}} @endif" ><i class="fa fa-book fa-fw"></i> Productos<span class="fa arrow"></span></a>
 	                            <ul class="nav nav-second-level">
 		                            <li>
 		                                <a href="/administrador/productos/categorias">Categorias</a>
 		                            </li>
-		                            <li>
+		                           {{--  <li>
 		                                <a href="/administrador/productos/articulos">Artículos</a>
-		                            </li>
+		                            </li> --}}
 	                            </ul>
 	                        </li>
 	                        <li>
 	                            <a href="/administrador/proveedores" class="@if($route == 'administrador/proveedores' || $route == 'administrador/proveedores/add-proveedor' || $route == 'administrador/proveedores/editar/{id}' ) {{ 'active'}} @endif"><i class="fa fa-shopping-cart fa-fw"></i> Proveedores</a>
-	                        </li>
-	                        <li>
-	                            <a href="/administrador/ventas" class="@if($route == 'administrador/ventas') {{ 'active'}} @endif"><i class="fa fa-line-chart fa-fw"></i> Ventas</a>
 	                        </li>
 	            		</ul>
 	            	</div>
@@ -178,11 +175,13 @@
 		{{ HTML::script('js/bootstrap.min.js') }}
 		{{ HTML::script('js/fileinput.js') }}
 		{{ HTML::script('js/admin.js') }}
+
 		<div id="page-wrapper">
 			@yield('contenido')
 		</div>
+
 	</div>
-	<script type="text/javascript">
+<script type="text/javascript">
 
 	$('.ver-messages').click(function(){
 
@@ -196,6 +195,6 @@
 		});
 	});	
 
-	</script>
+</script>
 </body>
 </html>

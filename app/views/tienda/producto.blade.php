@@ -29,7 +29,7 @@
 										<tr>
 											<td><b>Precio</b></td>
 											<td>
-												{{ "$ ".$articulo->precio.".00" }}
+												{{ "$ ".number_format($articulo->precio).".00" }}
 											</td>
 										</tr>
 										<tr>

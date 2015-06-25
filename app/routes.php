@@ -246,7 +246,7 @@ Route::group(['before'=>'auth'], function(){
 	 *	Rutas de módulo de "PEDIDOS"
 	 */
 
-	//Route::get('/administrador/pedidos','PaginaController@pedidos');
+	Route::get('/administrador/pedidos', 'PedidoController@index');
 
 	/*
 	 *	Rutas de módulo de "PRODUCTOS"
@@ -326,7 +326,7 @@ Route::group(['before'=>'auth-cliente'], function(){
 
 /*
 |--------------------------------------------------------------------------
-| 		Rutas de prueba y clouseres
+| 		Rutas de prueba y clousures
 |--------------------------------------------------------------------------
 */
 
@@ -338,9 +338,9 @@ Route::get('/add-admin',function(){
 
 	$usuario = new User;
 
-	$usuario->email = "adancruzhuerta@gmail.com";
+	$usuario->email = "urena75@hotmail.com";
 
-	$usuario->password = Hash::make('12345');
+	$usuario->password = Hash::make('ureña2015');
 
 	$usuario->photo_user = "/img/users/perfil_default.png";
 
@@ -350,11 +350,11 @@ Route::get('/add-admin',function(){
 
 	$persona = new Persona;
 
-	$persona->nombre = "ADÁN";
+	$persona->nombre = "Rafael";
 
-	$persona->apellido_p = "CRUZ";
+	$persona->apellido_p = "Ureña";
 
-	$persona->apellido_m = "HUERTA";
+	$persona->apellido_m = "Castellanos";
 
 	$persona->users_id = $usuario->id;
 

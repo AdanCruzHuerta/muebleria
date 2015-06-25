@@ -14,7 +14,7 @@
 		{{HTML::style('css/bootstrap-slider.css')}}
 		{{HTML::style('css/normalize.css')}}
 		{{HTML::style('css/urena-tienda.css')}}
-		{{HTML::style('http://fonts.googleapis.com/css?family=Poiret+One')}}
+		{{HTML::style('http://fonts.googleapis.com/css?family=Lato')}}
 	</head>
 	<body class="fuente">
 		<nav class="visible-xs">
@@ -39,13 +39,13 @@
 									@if(Auth::user()->roles_id == 1)
 										
 										<li><a href="/cliente/perfil">Perfil</a></li>
-
+										<li><a href="/carrito">Ver carrito</a></li>
+										<li><a href="/salir">Salir</a></li>
 									@endif
 								@else 
-									<li><a href="/cuenta">Iniciar Sesion / Registrate</a></li>
+									{{-- <li><a href="/cuenta">Iniciar Sesion / Registrate</a></li> --}}
+
 								@endif
-								<li><a href="/carrito">Ver carrito</a></li>
-								<li><a href="/salir">Salir</a></li>
 							</ul>
 						</div>
 					</div>
@@ -88,7 +88,7 @@
 
 								@else
 
-									<a href="/cuenta" id="opciones_tienda_1" type="button" class="btn btn-default btn-lg pull-right opciones_cliente" title="Iniciar Sesión / Registrarse"><i class="fa fa-user"></i></a>
+									{{-- <a href="/cuenta" id="opciones_tienda_1" type="button" class="btn btn-default btn-lg pull-right opciones_cliente" title="Iniciar Sesión / Registrarse"><i class="fa fa-user"></i></a> --}}
 
 								@endif	
 							</div>

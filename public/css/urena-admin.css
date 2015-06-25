@@ -535,3 +535,9 @@ table.dataTable thead .sorting:after {
     margin-left: 10px;
     color: #000;
 }
+.opc-estadisticas{
+    cursor: pointer;
+}
+.estadisticas{
+    font-size: 35px;
+}

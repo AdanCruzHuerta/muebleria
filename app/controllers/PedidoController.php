@@ -5,6 +5,31 @@ class PedidoController extends \BaseController {
 	public function __construct()
 	{	
 		$this->beforeFilter('csrf', array('on' => 'post'));
+
+		$this->beforeFilter('@getAdmin', ['only' => ['index'] ]);
+
+		$this->beforeFilter('@getMessages', ['only' => ['index'] ]);
+	}
+
+	public function getAdmin()
+	{
+		$this->administrador = Config::get('constants.DATA_ADMIN');
+	}
+
+	public function getMessages()
+	{
+		$this->messages = Config::get('constants.DATA_MESSAGES');
+	}
+
+	public function index()
+	{
+		$pedidos = Pedido::all();
+
+		$administrador = $this->administrador;
+
+		$mensajes = $this->messages;
+
+		return View::make('administrador.pedidos', compact('pedidos','administrador','mensajes'));
 	}
 	
 	public function create()
@@ -20,19 +45,7 @@ class PedidoController extends \BaseController {
 
 	public function showComprasCliente()
 	{
-		$pedidos = DB::table('pedidos as p')
-
-					->join('personas_has_articulos as p_a', 'p.id', '=', 'p_a.pedidos_id')
-
-					->join('personas as per', 'p_a.personas_id', '=', 'per.id')
-
-					->where('per.id', '=', Session::get('cliente')->id )
-
-					->where('p.status_pedidos_id', '=', 1)
-
-					->select('p.id','p.importe_total','p.status_pedidos_id as status','p.created_at')
-
-					->get();
+		$pedidos = Repositoriopedidos::getPedidosCliente();
 
 		$countCarrito = Repositoriocarrito::countCarrito();
 

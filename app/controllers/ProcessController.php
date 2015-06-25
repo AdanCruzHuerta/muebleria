@@ -10,6 +10,7 @@ class ProcessController extends \BaseController {
 	
 	public function payment()
 	{
+
 		$importe = Input::get('importe') * 100;
 
 		Conekta::setApiKey("key_iUTmeiqNoshTBUGSMnri2Q");
@@ -47,8 +48,6 @@ class ProcessController extends \BaseController {
         $pedido->status_pedidos_id = 1;
 
         $pedido->save();
-
-        //$carritos = Repositoriocarrito::getArticulosClienteCarrito(Session::get('cliente'));
 
         DB::table('personas_has_articulos as p_a')
 
@@ -91,7 +90,7 @@ class ProcessController extends \BaseController {
         });
     
         return View::make('tienda.respuesta', compact('mensaje', 'countCarrito'));
+        
 	}
-
 
 }

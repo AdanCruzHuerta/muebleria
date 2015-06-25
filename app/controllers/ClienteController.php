@@ -163,6 +163,8 @@ class ClienteController extends \BaseController {
 
 		$persona->calle = Input::get('calle');
 
+		$persona->colonia = Input::get('colonia');
+
 		$persona->numero_ext = Input::get('numero_ext');
 
 		$persona->numero_int = Input::get('numero_int');

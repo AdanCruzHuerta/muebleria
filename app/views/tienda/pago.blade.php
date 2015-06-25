@@ -95,7 +95,8 @@
 											<br>
 											<div class="alert alert-success">
 												<center>
-													<b>Aceptamos todas las Tarjetas de Crédito</b>
+													<b>Aceptamos todas las Tarjetas de Crédito.</b><br>
+													*Tarjetas de Débito aceptadas <a href="javascript:;" class="bancos" title="HSBC, Banamex, Santander, Inbursa" data-placement="right">Ver</a>
 												</center>
 											</div>
 											
@@ -169,6 +170,7 @@
 
 	                $("#card-errors").show();
 	  				
+	  				$('#processPayment').html('Procesar pago');
 	  				$form.find("button").prop("disabled", false);
 	            };
 	            
@@ -178,11 +180,14 @@
 	                $form = $(this);
 
 	                /* Previene hacer submit más de una vez */
+	                $('#processPayment').html('Espere un momento...');
 	                $form.find("button").prop("disabled", true);
 	                Conekta.token.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
 	                /* Previene que la información de la forma sea enviada al servidor */
 	                return false;
 	            });
+
+	            $('.bancos').tooltip();
 
 	        });
 	</script>	

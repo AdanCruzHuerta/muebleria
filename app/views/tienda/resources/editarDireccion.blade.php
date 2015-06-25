@@ -2,6 +2,10 @@
 
 @section('contenido_perfil')
 
+<style>
+	.margin{margin-bottom: 15px;}
+</style>
+
 <div id="alerta"></div>
 
 {{ Form::open(['url'=>'/cliente/perfil/save-direccion','id'=>'form-user-direccion']) }}
@@ -9,21 +13,50 @@
 	<div class="row">
 
 		<div class="form-group">
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 margin">
+	    		<label>Calle</label> 
+	    		<input type="text" class="form-control" id="calle" name="calle" value="{{{ $dataPersona->calle or '' }}}" placeholder="Ingresa calle">
+	  		</div>
+
+	  		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 margin">
+	    		<label>Colonia</label> 
+	    		<input type="text" class="form-control" id="colonia" name="colonia" value="{{{ $dataPersona->colonia or '' }}}" placeholder="Ingresa colonia">
+	  		</div>
+
+		</div>
+
+		<div class="form-group">
+
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 margin">
+	    		<label>Número int.</label>
+	    		<input type="text" class="form-control" id="numero_int" name="numero_int" value="{{{ $dataPersona->numero_int or '' }}}" placeholder="(opcional)">
+	  		</div>
+
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg- margin">
+	    		<label>Número ext.</label>
+	    		<input type="text" class="form-control" id="numero_ext" name="numero_ext" value="{{{ $dataPersona->numero_ext or '' }}}" placeholder="Ingresa número exterior">
+	  		</div>
+
+	  	</div>
+
+		<div class="form-group">
+
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 margin">
 	    		<label>Teléfono</label>
 	    		<input type="text" class="form-control" id="telefono" name="telefono" value="{{{ $dataPersona->telefono or '' }}}" placeholder="Ingresa número de teléfono">
 	  		</div>
 
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-	    		<label>Código Postal</label>
-	    		<input type="text" class="form-control" id="codigo_postal" name="codigo_postal" value="{{{ $dataPersona->codigo_postal or '' }}}" placeholder="Ingresa código postal">
+	  		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 margin">
+	    		<label>Ciudad</label>
+	    		<input type="text" class="form-control" id="ciudad" name="ciudad" value="{{{ $dataPersona->ciudad or '' }}}" placeholder="Ingresa ciudad">
 	  		</div>
 
-	  		<br><br><br>
 	  	</div>
 
 	  	<div class="form-group">
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 margin">
 	    		<label>Estado</label>
 	    		<select name="estado" id="estado" class="form-control">
 	    			<option value="">Selecciona un estado</option>
@@ -33,7 +66,7 @@
 	    		</select>
 	  		</div>
 
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 margin">
 	    		<label>Municipio</label>
 	    		<select name="municipio" id="municipio" class="form-control" class="form-control">
 	    			<option value="">Selecciona un municipio</option>
@@ -43,40 +76,17 @@
 	    		</select>
 	  		</div>
 
-	  		<br><br><br>
-	  	</div>
-
-		<div class="form-group">
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-	    		<label>Ciudad</label>
-	    		<input type="text" class="form-control" id="ciudad" name="ciudad" value="{{{ $dataPersona->ciudad or '' }}}" placeholder="Ingresa ciudad">
-	  		</div>
-
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-	    		<label>Calle</label> 
-	    		<input type="text" class="form-control" id="calle" name="calle" value="{{{ $dataPersona->calle or '' }}}" placeholder="Ingresa calle">
-	  		</div>
-
-	  		<br><br><br>
 	  	</div>
 
 	  	<div class="form-group">
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-	    		<label>Número int.</label>
-	    		<input type="text" class="form-control" id="numero_int" name="numero_int" value="{{{ $dataPersona->numero_int or '' }}}" placeholder="(opcional)">
-	  		</div>
+			
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 margin">
+	    		<label>Código Postal</label>
+	    		<input type="text" class="form-control" id="codigo_postal" name="codigo_postal" value="{{{ $dataPersona->codigo_postal or '' }}}" placeholder="Ingresa código postal">
+	  		</div>				
 
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-	    		<label>Número ext.</label>
-	    		<input type="text" class="form-control" id="numero_ext" name="numero_ext" value="{{{ $dataPersona->numero_ext or '' }}}" placeholder="Ingresa número exterior">
-	  		</div>
-	  		<br><br><br>
-	  	</div>
-	  	<div class="form-group">
-			<label class="col-xs-12 col-sm-12 col-md-6 col-lg-6 control-label">
-				Seleccione el horario preferente de entrega:
-			</label>
-		    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 margin">
+		    	<label>Horario de entrega</label>
 		    	<select name="horario" id="horario" class="form-control">
 		    		<option value="">Selecciona Horario</option>
 		    		<option @if($dataPersona->horario_entrega == 1) {{ "selected = 'selected'" }} @endif value="1" >De 8 am a 12 pm</option>
@@ -85,8 +95,11 @@
 		    		<option @if($dataPersona->horario_entrega == 4) {{ "selected = 'selected'" }} @endif value="4" >De 5 pm a 8 pm</option>
 		    	</select>
 		    </div>
-		 </div>
+
+		</div>
+
 	</div>
+
 	<br><br>
 	
 	<div class="row">
